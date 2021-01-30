@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/splash"
+        android:name="net.tinat.group.eventen.ui.onBoarding.SplashFragment"
+        android:label="splash_fragment"
+        tools:layout="@layout/splash_fragment" >
+        <action
+            android:id="@+id/action_splash_to_onBoardingViewPager"
+            app:destination="@id/OnBoardingViewPager" />
+
+        <action
+            android:id="@+id/action_splash_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/OnBoardingViewPager"
+        android:name="net.tinat.group.eventen.ui.onBoarding.OnBoardingViewPager"
+        android:label="fragment_on_boarding_view_pager"
+        tools:layout="@layout/onboarding_viewpager_item" >
+        <action
+            android:id="@+id/action_OnBoardingViewPager_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="net.tinat.group.eventen.ui.user.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="net.tinat.group.eventen.ui.user.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/sign_up_fragment">
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="net.tinat.group.eventen.ui.bottom_tabs.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_tickets_Fragment"
+            app:destination="@id/ticketsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_activitiesFragment"
+            app:destination="@id/activitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketScreenFragment"
+        android:name="net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenFragment"
+        android:label="ticket_screen_fragment"
+        tools:layout="@layout/ticket_screen_fragment" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="net.tinat.group.eventen.ui.getTicketsFlow.paymentFlow.PaymentFragment"
+        android:label="payment_fragment"
+        tools:layout="@layout/payment_fragment" />
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsFragment"
+        android:label="event_details_fragment"
+        tools:layout="@layout/event_details_fragment" />
+    <fragment
+        android:id="@+id/getTicketFragment"
+        android:name="net.tinat.group.eventen.ui.getTicketsFlow.getTickets.GetTicketFragment"
+        android:label="GetTicketFragment"
+        tools:layout="@layout/get_ticket_fragment"/>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="net.tinat.group.eventen.ui.bottom_tabs.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" >
+
+        <action
+            android:id="@+id/action_profileFragment_to_activitiesFragment"
+            app:destination="@id/activitiesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_tickets_Fragment"
+            app:destination="@id/ticketsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="net.tinat.group.eventen.ui.bottom_tabs.activity.ActivitiesFragment"
+        android:label="activities_fragment"
+        tools:layout="@layout/activities_fragment" >
+        <action
+            android:id="@+id/action_activitiesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_activitiesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_activitiesFragment_to_tickets_Fragment"
+            app:destination="@id/ticketsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ticketsFragment"
+        android:name="net.tinat.group.eventen.ui.bottom_tabs.tickets.TicketsFragment"
+        android:label="tickets_fragment"
+        tools:layout="@layout/tickets_fragment" >
+
+        <action
+            android:id="@+id/action_tickets_Fragment_to_activitiesFragment"
+            app:destination="@id/activitiesFragment" />
+        <action
+            android:id="@+id/action_tickets_Fragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_tickets_Fragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
+    </fragment>
+
+</navigation>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1094205871994",
+    "project_id": "eventen-fc946",
+    "storage_bucket": "eventen-fc946.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094205871994:android:a51cecca98291ba61be8c3",
+        "android_client_info": {
+          "package_name": "net.tinat.group.eventen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094205871994-i858m7d1tc2g4dtj46r0pur44lpqp5e1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Z0mD2ny53UkJM6oxxeOY0oGxIuAXQyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094205871994-i858m7d1tc2g4dtj46r0pur44lpqp5e1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

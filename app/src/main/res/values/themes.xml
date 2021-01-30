@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Eventen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/cyan_400</item>
+        <item name="colorSecondaryVariant">@color/cyan_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="spinnerThemePurple">
+        <item name="android:textColor">@color/purple_900</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="spinnerThemeGray">
+        <item name="android:textColor">@color/grayColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BottomBarTheme" parent="Theme.MaterialComponents">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/cyan_200</item>
+        <item name="colorPrimaryDark">@color/cyan_200</item>
+        <item name="colorAccent">@color/cyan_200</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/purple_700</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/purple_700</item>
+    </style>
+
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <fragment
+        android:id="@+id/evenTenNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_nav_graph" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        style="@style/Theme.MaterialComponents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ui.MainActivity">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clipToPadding="false"
+            android:theme="@style/BottomBarTheme"
+            android:visibility="gone"
+            app:backgroundTint="@color/cyan_200"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="0dp"
+            app:fabCradleRoundedCornerRadius="0dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
+                android:clipToPadding="false"
+                android:outlineAmbientShadowColor="@color/cyan_200"
+                android:outlineSpotShadowColor="@color/transparent"
+                android:visibility="visible"
+                app:itemIconSize="@dimen/sixteen_dp"
+                app:itemIconTint="@color/purple_700"
+                app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+                app:itemTextAppearanceInactive="@style/BottomNavigationView"
+                app:itemTextColor="@color/purple_700"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_bar_menu"
+                tools:ignore="UnusedAttribute" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <LinearLayout
+            android:id="@+id/fab_layout"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/circle_shape"
+            android:visibility="gone"
+            app:layout_anchor="@+id/bottom_app_bar"
+            app:layout_anchorGravity="top|center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/ten_dp"
+                android:backgroundTint="@color/purple_700"
+                app:cardElevation="@dimen/five_dp"
+                app:cardCornerRadius="@dimen/forty_dp"
+                tools:ignore="UnusedAttribute">
+
+                <ImageView
+                    android:id="@+id/image_fab_icon"
+                    android:layout_width="@dimen/sixteen_dp"
+                    android:layout_height="@dimen/sixteen_dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_add_fab"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

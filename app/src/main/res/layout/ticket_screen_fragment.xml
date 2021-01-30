@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_900"
+    tools:context=".ui.getTicketsFlow.ticketScreen.TicketScreenFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/purple_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="@dimen/sixteen_dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:cardCornerRadius="@dimen/sixteen_dp">
+
+                <ImageView
+                    android:id="@+id/_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/popular_event"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/image_qr"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                app:srcCompat="@drawable/ic_qr_code"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/ticket_fragment_logo"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/forty_dp"
+                app:srcCompat="@drawable/ic_behance_logo"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:text="@string/besudan_2021"
+                android:textColor="@color/purple_900"
+                android:textSize="@dimen/twenty_sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventen_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/khartoum_sudan"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/twelve_sp" />
+
+            <TextView
+                android:id="@+id/eventen_full_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/_22_oct_2021_04_00_pm_11_30_pm"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/twelve_sp" />
+
+            <TextView
+                android:id="@+id/ticket_first_last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/first_last_name"
+                android:textColor="@color/purple_900"
+                android:textSize="@dimen/twenty_sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/visitor_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/graphic_designer"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/sixteen_sp" />
+
+            <TextView
+                android:id="@+id/visitor_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/name_gmail_com"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/sixteen_sp" />
+
+            <TextView
+                android:id="@+id/visitor_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="@string/_2499xxxxxxxxx"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/sixteen_sp" />
+
+            <ImageView
+                android:id="@+id/btn_download_ticket"
+                android:layout_width="@dimen/twenty_dp"
+                android:layout_height="@dimen/twenty_dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/forty_dp"
+                app:srcCompat="@drawable/ic_download"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
