@@ -12,7 +12,7 @@ val firebaseModule = module {
     single {
         val eventenAppOptions = FirebaseOptions.Builder()
                 .setApplicationId("1:1094205871994:android:a51cecca98291ba61be8c3")
-                .setProjectId("chat-eventen-fc946-da32b")
+                .setProjectId("eventen-fc946")
                 .setApiKey("AIzaSyC7S6DNkaMNRkESfHRiCRbf1CjPEphsfhk")
                 .build()
         FirebaseApp.initializeApp(androidApplication(), eventenAppOptions, "eventen_application")

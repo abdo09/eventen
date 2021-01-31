@@ -28,7 +28,9 @@ class HomeFragment : BaseSupportFragment(R.layout.home_fragment) {
     }
 
     private fun initViewModel() {
-        viewModel.getCategories()
+        viewModel.getCategories()?.observe(viewLifecycleOwner, { categories ->
+
+        })
     }
 
 }

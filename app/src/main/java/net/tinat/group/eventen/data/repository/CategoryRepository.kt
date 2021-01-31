@@ -11,9 +11,9 @@ class CategoryRepository(
     private val authRepository: AuthRepository
 ) {
 
-    fun getCategoryList(): Task<QuerySnapshot>? {
+    fun getCategoryList(): Query? {
         return if (authRepository.isUserLogged())
-            fireStore.collection(FireStoreConfig.CATEGORY).get()
+            fireStore.collection(FireStoreConfig.CATEGORY)
         else null
 
     }

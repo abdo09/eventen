@@ -110,8 +110,8 @@ def getProps(path) {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth:20.0.1'
-    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    implementation 'com.google.firebase:firebase-firestore:22.0.2'
 
 
     // Required -- JUnit 4 framework

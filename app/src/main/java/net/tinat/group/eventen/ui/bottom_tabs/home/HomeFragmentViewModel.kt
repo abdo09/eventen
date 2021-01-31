@@ -10,19 +10,21 @@ class HomeFragmentViewModel(private val categoryRepository: CategoryRepository) 
 
     private var categoriesList: MutableLiveData<List<String>>? = MutableLiveData()
 
-    @SuppressLint("LogNotTimber")
     fun getCategories(): MutableLiveData<List<String>>? {
 
         showLoading.value = true
-        var categoriesListTemp: List<String?>
-
-        categoryRepository.getCategoryList()?.addOnSuccessListener { documents ->
+        val listOfCategories = arrayListOf<String>()
+        categoryRepository.getCategoryList()?.get()?.addOnSuccessListener { documents ->
             showLoading.value = false
-            for ( document in documents){
-                Log.d("gfdSGDAFG", "${document.data}")
+            for (document in documents) {
+                listOfCategories.add(document.id)
+                Log.d("GDSGFGASG", document.getString("nameEn").toString())
             }
+            categoriesList?.value = listOfCategories
         }
-        
+            ?.addOnFailureListener {
+                showLoading.value = false
+            }
 
         return categoriesList
     }
