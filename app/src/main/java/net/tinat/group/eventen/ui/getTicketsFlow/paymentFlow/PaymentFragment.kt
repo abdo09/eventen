@@ -8,10 +8,23 @@ import android.view.ViewGroup
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
 import net.tinat.group.eventen.base.BaseViewModel
+import net.tinat.group.eventen.databinding.PaymentFragmentBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PaymentFragment : BaseSupportFragment(R.layout.payment_fragment) {
+class PaymentFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<PaymentViewModel>()
+
+    private lateinit var binding: PaymentFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = PaymentFragmentBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
 }

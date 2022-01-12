@@ -1,24 +1,40 @@
 package net.tinat.group.eventen.ui.user.login
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.login_fragment.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
+import net.tinat.group.eventen.databinding.LoginFragmentBinding
 import net.tinat.group.eventen.utils.Constants
 import net.tinat.group.eventen.utils.navigationBarAndStatusBarColor
 import net.tinat.group.eventen.utils.setGrayBoarder
 import net.tinat.group.eventen.utils.setRedBoarder
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseSupportFragment(R.layout.login_fragment){
+class LoginFragment : BaseSupportFragment(){
+
     override val viewModel by viewModel<LoginFragmentViewModel>()
+
+    override var navigationVisibility = View.GONE
+
+    private lateinit var binding: LoginFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = LoginFragmentBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        navigationVisibility = View.GONE
 
         onClick()
 

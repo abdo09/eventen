@@ -21,7 +21,7 @@ import net.tinat.group.eventen.utils.CookieBarConfig
 import net.tinat.group.eventen.utils.getCustomColor
 
 
-abstract class BaseSupportFragment(val fragment: Int): Fragment(fragment){
+abstract class BaseSupportFragment: Fragment(){
 
     protected open var navigationVisibility = View.GONE
 

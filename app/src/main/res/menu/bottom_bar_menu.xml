@@ -2,25 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_home_clicked"
+        android:icon="@drawable/ic_home"
         android:id="@+id/navigation_home"
         android:title="@string/home" />
 
     <item
-        android:icon="@drawable/ic_activity_unclicked"
+        android:icon="@drawable/ic_activity"
         android:id="@+id/navigation_activities"
         android:title="@string/activity" />
 
-    <item android:id="@+id/navigation_hidden"
+    <item
+        android:checkable="false"
+        android:enabled="false"
+        android:id="@+id/navigation_hidden"
         android:title=""/>
 
     <item
-        android:icon="@drawable/ic_tickets_unclicked"
+        android:icon="@drawable/ic_tickets"
         android:id="@+id/navigation_tickets"
         android:title="@string/tickets" />
 
     <item
-        android:icon="@drawable/ic_profile_unclicked"
+        android:icon="@drawable/ic_profile"
         android:id="@+id/navigation_profile"
         android:title="@string/profile" />
 

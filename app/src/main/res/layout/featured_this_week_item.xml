@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/five_dp"
             android:gravity="center"
-            android:text="Oct\n22"
+            android:text="@string/oct_n22"
             android:textColor="@color/white"
             android:textSize="@dimen/ten_sp" />
 

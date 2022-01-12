@@ -1,21 +1,36 @@
 package net.tinat.group.eventen.ui.onBoarding
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import kotlinx.android.synthetic.main.splash_fragment.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
+import net.tinat.group.eventen.databinding.SplashFragmentBinding
 import net.tinat.group.eventen.ui.user.login.LoginFragmentViewModel
 import net.tinat.group.eventen.utils.Constants
 import net.tinat.group.eventen.utils.navigationBarAndStatusBarColor
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SplashFragment : BaseSupportFragment(R.layout.splash_fragment) {
+class SplashFragment : BaseSupportFragment() {
 
 
     override val viewModel by viewModel<LoginFragmentViewModel>()
+
+    private lateinit var binding: SplashFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = SplashFragmentBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +51,7 @@ class SplashFragment : BaseSupportFragment(R.layout.splash_fragment) {
     }
 
     private fun motionLayoutHandler() {
-        splash_screen.addTransitionListener(object : MotionLayout.TransitionListener{
+        binding.splashScreen.addTransitionListener(object : MotionLayout.TransitionListener{
             override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {}
 
             override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {}

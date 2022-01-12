@@ -3,21 +3,37 @@ package net.tinat.group.eventen.ui.user.signup
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.sign_up_fragment.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
+import net.tinat.group.eventen.databinding.SignUpFragmentBinding
 import net.tinat.group.eventen.utils.Constants
 import net.tinat.group.eventen.utils.setGrayBoarder
 import net.tinat.group.eventen.utils.setRedBoarder
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SignUpFragment : BaseSupportFragment(R.layout.sign_up_fragment) {
+class SignUpFragment : BaseSupportFragment() {
+
     private var isMale = true
     override val viewModel by viewModel<SignUpFragmentViewModel>()
+
+    private lateinit var binding: SignUpFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = SignUpFragmentBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,32 +52,32 @@ class SignUpFragment : BaseSupportFragment(R.layout.sign_up_fragment) {
     //Check fields are validated
     private fun isEntryValidated(): Boolean {
         when {
-            ed_signUp_firstName.text.toString().isEmpty() -> {
-                ip_signUp_firstName.setRedBoarder(R.string.first_name)
+            binding.edSignUpFirstName.text.toString().isEmpty() -> {
+                binding.ipSignUpFirstName.setRedBoarder(R.string.first_name)
                 return false
             }
-            ed_signUp_lastName.text.toString().isEmpty() -> {
-                ip_signUp_lastName.setRedBoarder(R.string.last_name)
+            binding.edSignUpLastName.text.toString().isEmpty() -> {
+                binding.ipSignUpLastName.setRedBoarder(R.string.last_name)
                 return false
             }
-            ed_signUp_email.text.toString().isEmpty() -> {
-                ip_signUp_email.setRedBoarder(R.string.email)
+            binding.edSignUpEmail.text.toString().isEmpty() -> {
+                binding.ipSignUpEmail.setRedBoarder(R.string.email)
                 return false
             }
-            ed_signUp_number.text.toString().isEmpty() -> {
-                ip_signUp_number.setRedBoarder(R.string.number)
+            binding.edSignUpNumber.text.toString().isEmpty() -> {
+                binding.ipSignUpNumber.setRedBoarder(R.string.number)
                 return false
             }
-            ed_signUp_company_org_un.text.toString().isEmpty() -> {
-                ip_signUp_company_org_uni.setRedBoarder(R.string.company_organization_university)
+            binding.edSignUpCompanyOrgUn.text.toString().isEmpty() -> {
+                binding.ipSignUpCompanyOrgUni.setRedBoarder(R.string.company_organization_university)
                 return false
             }
-            ed_signUp_title.text.toString().isEmpty() -> {
-                ip_signUp_title.setRedBoarder(R.string.title)
+            binding.edSignUpTitle.text.toString().isEmpty() -> {
+                binding.ipSignUpTitle.setRedBoarder(R.string.title)
                 return false
             }
-            ed_signUp_password.text.toString().isEmpty() -> {
-                ip_signUp_password.setRedBoarder(R.string.password)
+            binding.edSignUpPassword.text.toString().isEmpty() -> {
+                binding.ipSignUpPassword.setRedBoarder(R.string.password)
                 return false
             }
             else -> return true
@@ -71,24 +87,24 @@ class SignUpFragment : BaseSupportFragment(R.layout.sign_up_fragment) {
     //Handle fragment clicks
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun onClick() {
-        btn_signUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             if (isEntryValidated()){
                 viewModel.createUser(ed_signUp_email.text.toString(), ed_signUp_password.text.toString())
             }
         }
 
-        tv_login.setOnClickListener {
+        binding.tvLogin.setOnClickListener {
             navController.navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
         }
 
-        btn_signUp_male.setOnClickListener {
+        binding.btnSignUpMale.setOnClickListener {
             if (!isMale){
                 isMale = true
                 setGenderChecked(isMale, requireContext())
             }
         }
 
-        btn_signUp_female.setOnClickListener {
+        binding.btnSignUpFemale.setOnClickListener {
             if (isMale){
                 isMale = false
                 setGenderChecked(isMale, requireContext())
@@ -98,13 +114,13 @@ class SignUpFragment : BaseSupportFragment(R.layout.sign_up_fragment) {
 
     //Set default boarder
     private fun setGrayBoarderToField() {
-        ed_signUp_firstName.setGrayBoarder(R.string.first_name, ip_signUp_firstName)
-        ed_signUp_lastName.setGrayBoarder(R.string.last_name, ip_signUp_lastName)
-        ed_signUp_email.setGrayBoarder(R.string.email, ip_signUp_email)
-        ed_signUp_number.setGrayBoarder(R.string.number, ip_signUp_number)
-        ed_signUp_company_org_un.setGrayBoarder(R.string.company_organization_university, ip_signUp_company_org_uni)
-        ed_signUp_title.setGrayBoarder(R.string.title, ip_signUp_title)
-        ed_signUp_password.setGrayBoarder(R.string.password, ip_signUp_password)
+        binding.edSignUpFirstName.setGrayBoarder(R.string.first_name, ip_signUp_firstName)
+        binding.edSignUpLastName.setGrayBoarder(R.string.last_name, ip_signUp_lastName)
+        binding.edSignUpEmail.setGrayBoarder(R.string.email, ip_signUp_email)
+        binding.edSignUpNumber.setGrayBoarder(R.string.number, ip_signUp_number)
+        binding.edSignUpCompanyOrgUn.setGrayBoarder(R.string.company_organization_university, ip_signUp_company_org_uni)
+        binding.edSignUpTitle.setGrayBoarder(R.string.title, ip_signUp_title)
+        binding.edSignUpPassword.setGrayBoarder(R.string.password, ip_signUp_password)
     }
 
     //ViewModel observer
@@ -125,34 +141,34 @@ class SignUpFragment : BaseSupportFragment(R.layout.sign_up_fragment) {
 
     //Clear all fields
     private fun clearAllFields() {
-        ed_signUp_firstName.text = null
-        ed_signUp_lastName.text = null
-        ed_signUp_email.text = null
-        ed_signUp_number.text = null
-        ed_signUp_company_org_un.text = null
-        ed_signUp_title.text = null
-        ed_signUp_password.text = null
+        binding.edSignUpFirstName.text = null
+        binding.edSignUpLastName.text = null
+        binding.edSignUpEmail.text = null
+        binding.edSignUpNumber.text = null
+        binding.edSignUpCompanyOrgUn.text = null
+        binding.edSignUpTitle.text = null
+        binding.edSignUpPassword.text = null
     }
 
     // Set gender checked
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setGenderChecked(isMale: Boolean, context: Context) {
         if (isMale){
-            btn_signUp_male.background = ContextCompat.getDrawable(context, R.drawable.boarder_purple700_color)
-            tv_signUp_male.setHintTextColor(ContextCompat.getColor(context, R.color.purple_700))
-            image_male.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_checked_gender))
+            binding.btnSignUpMale.background = ContextCompat.getDrawable(context, R.drawable.boarder_purple700_color)
+            binding.tvSignUpMale.setHintTextColor(ContextCompat.getColor(context, R.color.purple_700))
+            binding.imageMale.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_checked_gender))
 
-            btn_signUp_female.background = ContextCompat.getDrawable(context, R.drawable.boarder_gray_color)
-            tv_signUp_female.setHintTextColor(ContextCompat.getColor(context, R.color.grayColor))
-            image_female.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unchecked_gender))
+            binding.btnSignUpFemale.background = ContextCompat.getDrawable(context, R.drawable.boarder_gray_color)
+            binding.tvSignUpFemale.setHintTextColor(ContextCompat.getColor(context, R.color.grayColor))
+            binding.imageFemale.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unchecked_gender))
         } else {
-            btn_signUp_female.background = ContextCompat.getDrawable(context, R.drawable.boarder_purple700_color)
-            tv_signUp_female.setHintTextColor(ContextCompat.getColor(context, R.color.purple_700))
-            image_female.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_checked_gender))
+            binding.btnSignUpFemale.background = ContextCompat.getDrawable(context, R.drawable.boarder_purple700_color)
+            binding.tvSignUpFemale.setHintTextColor(ContextCompat.getColor(context, R.color.purple_700))
+            binding.imageFemale.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_checked_gender))
 
-            btn_signUp_male.background = ContextCompat.getDrawable(context, R.drawable.boarder_gray_color)
-            tv_signUp_male.setHintTextColor(ContextCompat.getColor(context, R.color.grayColor))
-            image_male.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unchecked_gender))
+            binding.btnSignUpMale.background = ContextCompat.getDrawable(context, R.drawable.boarder_gray_color)
+            binding.tvSignUpMale.setHintTextColor(ContextCompat.getColor(context, R.color.grayColor))
+            binding.imageMale.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unchecked_gender))
         }
     }
 

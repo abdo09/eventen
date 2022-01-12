@@ -1,306 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:context=".ui.getTicketsFlow.getTickets.GetTicketFragment"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/image_card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/image_card_view"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:cardCornerRadius="@dimen/twenty_dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:cardCornerRadius="@dimen/twenty_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute">
+
+                <ImageView
+                    android:id="@+id/home_popular_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/nineteen_dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/popular_event"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/purple_700"
+            app:cardCornerRadius="@dimen/twenty_dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_eventName_getTicketFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="UnusedAttribute">
 
-            <ImageView
-                android:id="@+id/home_popular_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/nineteen_dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/popular_event"
-                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/ten_dp"
+                android:gravity="center"
+                android:text="@string/oct_n22"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sixteen_sp" />
 
         </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_active_now"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/cyan_200"
+            app:cardCornerRadius="@dimen/twenty_dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_eventName_getTicketFragment"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UnusedAttribute">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/purple_700"
-        app:cardCornerRadius="@dimen/twenty_dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_eventName_getTicketFragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="UnusedAttribute">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/ten_dp"
+                android:text="@string/active"
+                android:textColor="@color/purple_900"
+                android:textSize="@dimen/sixteen_sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/ten_dp"
-            android:gravity="center"
-            android:text="Oct\n22"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sixteen_sp" />
+        </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_active_now"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/cyan_200"
-        app:cardCornerRadius="@dimen/twenty_dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_eventName_getTicketFragment"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="UnusedAttribute">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/ten_dp"
-            android:text="@string/active"
-            android:textColor="@color/purple_900"
-            android:textSize="@dimen/sixteen_sp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include
-            android:id="@+id/toolbar_layout"
-            layout="@layout/toolbar" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <TextView
-        android:id="@+id/tv_eventName_getTicketFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:paddingTop="@dimen/twenty_dp"
-        android:text="BeSudan 2021"
-        android:textColor="@color/purple_900"
-        android:textSize="@dimen/twenty_sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_card_view" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_spinner"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="@dimen/ten_dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/cyan_200"
-        app:cardCornerRadius="@dimen/twenty_dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_quantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_eventName_getTicketFragment"
-        app:layout_constraintVertical_bias="0.100000024"
-        tools:ignore="UnusedAttribute">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Spinner
-                android:id="@+id/sp_tickets"
+            <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tv_eventName_getTicketFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="32dp"
+            android:paddingTop="@dimen/twenty_dp"
+            android:text="@string/besudan_2021"
+            android:textColor="@color/purple_900"
+            android:textSize="@dimen/twenty_sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_card_view" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_spinner"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/cyan_200"
+            app:cardCornerRadius="@dimen/twenty_dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_eventName_getTicketFragment"
+            app:layout_constraintVertical_bias="0.100000024"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/sp_tickets"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_corners_app_blue"
+                    android:entries="@array/tickets_type"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/five_dp"
+                    android:paddingEnd="@dimen/five_dp"
+                    android:theme="@style/spinnerThemePurple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/sixteen_dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/sp_tickets"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sp_tickets"
+                    app:srcCompat="@drawable/ic_spinner_arrow"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_quantity"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/cyan_200"
+            app:cardCornerRadius="@dimen/twenty_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_spinner"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/rounded_corners_app_blue"
-                android:gravity="center"
-                android:paddingStart="@dimen/five_dp"
-                android:paddingEnd="@dimen/five_dp"
-                android:theme="@style/spinnerThemePurple"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:entries="@array/tickets_type" />
+                android:text="@string/quantity"
+                android:textColor="@color/purple_900" />
 
-            <ImageView
+        </androidx.cardview.widget.CardView>
 
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/sixteen_dp"
-                app:layout_constraintBottom_toBottomOf="@+id/sp_tickets"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/sp_tickets"
-                app:srcCompat="@drawable/ic_spinner_arrow"
-                tools:ignore="ContentDescription" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_quantity"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/cyan_200"
-        app:cardCornerRadius="@dimen/twenty_dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_spinner"
-        tools:ignore="UnusedAttribute">
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/quantity"
-            android:textColor="@color/purple_900" />
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_quantity"
+            app:layout_constraintTop_toTopOf="@+id/btn_quantity">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="@dimen/twenty_dp"
+                android:layout_height="@dimen/twenty_dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/five_dp"
+                app:srcCompat="@drawable/ic_minus_circle" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_quantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_quantity"
-        app:layout_constraintTop_toTopOf="@+id/btn_quantity">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="@drawable/boarder_gray_color"
+                android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="@dimen/twenty_dp"
-            android:layout_height="@dimen/twenty_dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/five_dp"
-            app:srcCompat="@drawable/ic_minus_circle" />
+                <TextView
+                    android:id="@+id/tv_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/_100_000" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/twenty_dp"
+                android:layout_height="@dimen/twenty_dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/five_dp"
+                app:srcCompat="@drawable/ic_plus_circle" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_price"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/cyan_200"
+            app:cardCornerRadius="@dimen/twenty_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_quantity"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/price"
+                android:textColor="@color/purple_900" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="80dp"
             android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
             android:background="@drawable/boarder_gray_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_price"
+            app:layout_constraintTop_toTopOf="@+id/btn_price"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/tv_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/_100_000" />
+                android:text="@string/_50" />
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="@dimen/twenty_dp"
-            android:layout_height="@dimen/twenty_dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/five_dp"
-            app:srcCompat="@drawable/ic_plus_circle" />
-
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_price"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/cyan_200"
-        app:cardCornerRadius="@dimen/twenty_dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_quantity"
-        tools:ignore="UnusedAttribute">
-
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/price"
-            android:textColor="@color/purple_900" />
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="65dp"
-        android:background="@drawable/boarder_gray_color"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_price"
-        app:layout_constraintTop_toTopOf="@+id/btn_price"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
+            android:id="@+id/btn_proceed_to_pay"
+            style="@style/Widget.AppCompat.ActionButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="@dimen/twentyFour_dp"
+            android:background="@drawable/boarder_purple_background"
+            android:elevation="@dimen/ten_dp"
             android:gravity="center"
-            android:text="@string/_50" />
+            android:padding="@dimen/sixteen_dp"
+            android:text="@string/proceed_to_pay"
+            android:textColor="@color/cyan_200"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:targetApi="lollipop" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/btn_proceed_to_pay"
-        style="@style/Widget.AppCompat.ActionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="@dimen/twentyFour_dp"
-        android:background="@drawable/boarder_purple_background"
-        android:elevation="@dimen/ten_dp"
-        android:gravity="center"
-        android:padding="@dimen/sixteen_dp"
-        android:text="@string/proceed_to_pay"
-        android:textColor="@color/cyan_200"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:targetApi="lollipop" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

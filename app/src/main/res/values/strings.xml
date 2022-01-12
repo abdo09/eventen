@@ -80,6 +80,7 @@
     <string name="speaker">Speaker</string>
     <string name="vote">Vote</string>
     <string name="search_by_name">Search by name ...</string>
+    <string name="oct_n22">Oct\n22</string>
 
     <array name="on_boarding_titles">
         <item>Search event</item>

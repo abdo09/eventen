@@ -14,21 +14,19 @@ import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.onboarding_viewpager_item.view.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
+import net.tinat.group.eventen.databinding.LoginFragmentBinding
+import net.tinat.group.eventen.databinding.OnboardingViewpagerBinding
 import net.tinat.group.eventen.ui.user.login.LoginFragmentViewModel
 import net.tinat.group.eventen.utils.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class OnBoardingViewPager : BaseSupportFragment(R.layout.onboarding_viewpager) {
+class OnBoardingViewPager : BaseSupportFragment() {
 
     override val viewModel by viewModel<LoginFragmentViewModel>()
 
-    private lateinit var onBoardingViewPager: ViewPager2
-    private val itemCount by lazy { onBoardingViewPager.adapter!!.itemCount }
-    private lateinit var onBoardingBtnSkip: TextView
-    private lateinit var onBoardingBtnNext: TextView
-    private lateinit var onBoardingBtnStart: TextView
-    private lateinit var onBoardingBtnPrevious: TextView
-    private lateinit var wormDotsIndicator: WormDotsIndicator
+    private lateinit var binding: OnboardingViewpagerBinding
+
+    private val itemCount by lazy { binding.onboardingViewpager.adapter!!.itemCount }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +34,27 @@ class OnBoardingViewPager : BaseSupportFragment(R.layout.onboarding_viewpager) {
         requireActivity().navigationBarAndStatusBarColor(R.color.purple_700, R.color.purple_700)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = OnboardingViewpagerBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        inflateViews(view)
+        inflateViews()
 
         onClick()
 
     }
 
-    private fun inflateViews(view: View) {
-        onBoardingViewPager = view.findViewById(R.id.onboarding_viewpager)
-        onBoardingViewPager.apply {
+    private fun inflateViews() {
+        binding.onboardingViewpager.apply {
             adapter = OnBoardingViewPagerFragmentAdapter(requireActivity())
             setPageTransformer { page, position ->
                 setParallaxTransformation(page, position)
@@ -59,13 +66,7 @@ class OnBoardingViewPager : BaseSupportFragment(R.layout.onboarding_viewpager) {
                 }
             })
         }
-        onBoardingBtnStart = view.findViewById(R.id.onboarding_btn_start)
-        onBoardingBtnNext = view.findViewById(R.id.onboarding_btn_next)
-        onBoardingBtnPrevious = view.findViewById(R.id.onboarding_btn_previous)
-        onBoardingBtnSkip = view.findViewById(R.id.onboarding_btn_skip)
-
-        wormDotsIndicator = view.findViewById(R.id.worm_dots_indicator)
-        wormDotsIndicator.setViewPager2(onBoardingViewPager)
+        binding.wormDotsIndicator.setViewPager2(binding.onboardingViewpager)
         //onBoardingViewPager.addItemDecoration(CirclePagerIndicatorDecoration())
     }
 
@@ -92,42 +93,42 @@ class OnBoardingViewPager : BaseSupportFragment(R.layout.onboarding_viewpager) {
 
     private fun handleNextState(index: Int) {
         if (index == itemCount - 1) {
-            onBoardingBtnNext.fadeOut(200)
-            onBoardingBtnStart.fadeIn(500)
+            binding.onboardingBtnNext.fadeOut(200)
+            binding.onboardingBtnStart.fadeIn(500)
         } else {
-            onBoardingBtnStart.fadeOut(200)
-            onBoardingBtnNext.fadeIn(300)
+            binding.onboardingBtnNext.fadeOut(200)
+            binding.onboardingBtnStart.fadeIn(300)
             if (index == 1)
-                context?.getCustomColor(R.color.white)?.let { onBoardingBtnNext.toColor(it) }
+                context?.getCustomColor(R.color.white)?.let { binding.onboardingBtnNext.toColor(it) }
         }
 
         if (index == 0) {
-            onBoardingBtnNext.fadeIn(200)
-            onBoardingBtnPrevious.fadeOut(200)
-            context?.getCustomColor(R.color.cyan_200)?.let { onBoardingBtnNext.toColor(it) }
+            binding.onboardingBtnNext.fadeIn(200)
+            binding.onboardingBtnPrevious.fadeOut(200)
+            context?.getCustomColor(R.color.cyan_200)?.let { binding.onboardingBtnNext.toColor(it) }
         } else{
-            onBoardingBtnPrevious.fadeIn(300)
+            binding.onboardingBtnPrevious.fadeIn(300)
         }
 
     }
 
     private fun onClick(){
-        onBoardingBtnSkip.setOnClickListener {
+        binding.onboardingBtnSkip.setOnClickListener {
             navController.navigate(OnBoardingViewPagerDirections.actionOnBoardingViewPagerToLoginFragment())
         }
 
-        onBoardingBtnStart.setOnClickListener {
+        binding.onboardingBtnStart.setOnClickListener {
             navController.navigate(OnBoardingViewPagerDirections.actionOnBoardingViewPagerToLoginFragment())
         }
 
-        onBoardingBtnNext.setOnClickListener {
-            if (onBoardingViewPager.currentItem < itemCount - 1)
-                onBoardingViewPager.setCurrentItemX((onBoardingViewPager.currentItem - 1), 300)
+        binding.onboardingBtnNext.setOnClickListener {
+            if (binding.onboardingViewpager.currentItem < itemCount - 1)
+                binding.onboardingViewpager.setCurrentItemX((binding.onboardingViewpager.currentItem - 1), 300)
         }
 
-        onBoardingBtnPrevious.setOnClickListener {
-            if (onBoardingViewPager.currentItem > 0)
-                onBoardingViewPager.setCurrentItemX((onBoardingViewPager.currentItem + 1), 300)
+        binding.onboardingBtnPrevious.setOnClickListener {
+            if (binding.onboardingViewpager.currentItem > 0)
+                binding.onboardingViewpager.setCurrentItemX((binding.onboardingViewpager.currentItem + 1), 300)
         }
     }
 
