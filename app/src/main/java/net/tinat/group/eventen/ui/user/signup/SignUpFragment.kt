@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.sign_up_fragment.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
 import net.tinat.group.eventen.databinding.SignUpFragmentBinding
@@ -89,7 +88,7 @@ class SignUpFragment : BaseSupportFragment() {
     private fun onClick() {
         binding.btnSignUp.setOnClickListener {
             if (isEntryValidated()){
-                viewModel.createUser(ed_signUp_email.text.toString(), ed_signUp_password.text.toString())
+                viewModel.createUser(binding.edSignUpEmail.text.toString(), binding.edSignUpPassword.text.toString())
             }
         }
 
@@ -114,13 +113,13 @@ class SignUpFragment : BaseSupportFragment() {
 
     //Set default boarder
     private fun setGrayBoarderToField() {
-        binding.edSignUpFirstName.setGrayBoarder(R.string.first_name, ip_signUp_firstName)
-        binding.edSignUpLastName.setGrayBoarder(R.string.last_name, ip_signUp_lastName)
-        binding.edSignUpEmail.setGrayBoarder(R.string.email, ip_signUp_email)
-        binding.edSignUpNumber.setGrayBoarder(R.string.number, ip_signUp_number)
-        binding.edSignUpCompanyOrgUn.setGrayBoarder(R.string.company_organization_university, ip_signUp_company_org_uni)
-        binding.edSignUpTitle.setGrayBoarder(R.string.title, ip_signUp_title)
-        binding.edSignUpPassword.setGrayBoarder(R.string.password, ip_signUp_password)
+        binding.edSignUpFirstName.setGrayBoarder(R.string.first_name, binding.ipSignUpFirstName)
+        binding.edSignUpLastName.setGrayBoarder(R.string.last_name, binding.ipSignUpLastName)
+        binding.edSignUpEmail.setGrayBoarder(R.string.email, binding.ipSignUpEmail)
+        binding.edSignUpNumber.setGrayBoarder(R.string.number, binding.ipSignUpNumber)
+        binding.edSignUpCompanyOrgUn.setGrayBoarder(R.string.company_organization_university, binding.ipSignUpCompanyOrgUni)
+        binding.edSignUpTitle.setGrayBoarder(R.string.title, binding.ipSignUpTitle)
+        binding.edSignUpPassword.setGrayBoarder(R.string.password, binding.ipSignUpPassword)
     }
 
     //ViewModel observer

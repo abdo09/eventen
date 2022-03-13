@@ -1,4 +1,4 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.adapter
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.adapter.participant
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,32 +6,33 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import net.tinat.group.eventen.data.dto.Event
-import net.tinat.group.eventen.databinding.FeaturedThisWeekItemBinding
+import net.tinat.group.eventen.data.dto.Participates
+import net.tinat.group.eventen.databinding.ParticipantImageItemBinding
 
-class SponsorImageAdapter: RecyclerView.Adapter<SponsorImageAdapter.EventViewHolder>() {
+class ParticipantImageAdapter: RecyclerView.Adapter<ParticipantImageAdapter.ParticipantImageViewHolder>() {
 
-    inner class EventViewHolder(val featuredThisWeekItemBinding: FeaturedThisWeekItemBinding) :
-        RecyclerView.ViewHolder(featuredThisWeekItemBinding.root) {
-        fun bind(event: Event) {
-            featuredThisWeekItemBinding.event = event
+    inner class ParticipantImageViewHolder(val participantImageItemBinding: ParticipantImageItemBinding) :
+        RecyclerView.ViewHolder(participantImageItemBinding.root) {
+        fun bind(participate: Participates) {
+            participantImageItemBinding.participant = participate
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Event>() {
-        override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Participates>() {
+        override fun areItemsTheSame(oldItem: Participates, newItem: Participates): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
+        override fun areContentsTheSame(oldItem: Participates, newItem: Participates): Boolean {
             return oldItem == newItem
         }
     }
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        return EventViewHolder(
-            FeaturedThisWeekItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParticipantImageViewHolder {
+        return ParticipantImageViewHolder(
+            ParticipantImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -39,22 +40,22 @@ class SponsorImageAdapter: RecyclerView.Adapter<SponsorImageAdapter.EventViewHol
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Event) -> Unit)? = null
+    private var onItemClickListener: ((Participates) -> Unit)? = null
 
-    override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        val event = differ.currentList[position]
-        holder.bind(event)
+    override fun onBindViewHolder(holder: ParticipantImageViewHolder, position: Int) {
+        val participant = differ.currentList[position]
+        holder.bind(participant)
 
-        holder.featuredThisWeekItemBinding.apply {
+        holder.participantImageItemBinding.apply {
             root.setOnClickListener {
                 onItemClickListener?.let {
-                    it(event)
+                    it(participant)
                 }
             }
         }
     }
 
-    fun setOnClickListener(listener: (Event) -> Unit) {
+    fun setOnClickListener(listener: (Participates) -> Unit) {
         onItemClickListener = listener
     }
 }

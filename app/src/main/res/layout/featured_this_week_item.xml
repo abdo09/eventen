@@ -1,67 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="200dp"
-    android:layout_height="300dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginEnd="@dimen/twenty_dp"
-    app:cardCornerRadius="@dimen/sixteen_dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="event"
+            type="net.tinat.group.eventen.data.dto.Event" />
+
+    </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_gravity="end"
-        android:id="@+id/cardView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="@dimen/twenty_dp"
-        android:layout_marginEnd="@dimen/forty_dp"
-        android:backgroundTint="@color/purple_700"
-        app:cardCornerRadius="@dimen/ten_dp"
-        tools:ignore="UnusedAttribute">
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginEnd="@dimen/twenty_dp"
+        app:cardCornerRadius="@dimen/sixteen_dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/five_dp"
-            android:gravity="center"
-            android:text="@string/oct_n22"
-            android:textColor="@color/white"
-            android:textSize="@dimen/ten_sp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/twenty_dp"
+            android:layout_marginEnd="@dimen/twenty_dp"
+            android:backgroundTint="@color/purple_700"
+            app:cardCornerRadius="@dimen/ten_dp"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/five_dp"
+                android:gravity="center"
+                handledEventDate="@{event.date}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/ten_sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/popular_event" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rounded_bottom_corners_purple900"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/twenty_dp"
+                android:layout_marginTop="@dimen/twentyFour_dp"
+                android:text="@{event.eventName}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sixteen_sp" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/twenty_dp"
+                android:layout_marginTop="@dimen/ten_dp"
+                handledLocation="@{event.location}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/ten_sp" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/popular_event" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/rounded_bottom_corners_purple900"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/twenty_dp"
-            android:layout_marginTop="@dimen/twentyFour_dp"
-            android:text="@string/event_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sixteen_sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/twenty_dp"
-            android:layout_marginTop="@dimen/ten_dp"
-            android:text="@string/khartoum_sudan"
-            android:textColor="@color/white"
-            android:textSize="@dimen/ten_sp" />
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</layout>

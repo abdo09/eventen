@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
-import kotlinx.android.synthetic.main.splash_fragment.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
 import net.tinat.group.eventen.databinding.SplashFragmentBinding
@@ -36,7 +35,7 @@ class SplashFragment : BaseSupportFragment() {
         super.onViewCreated(view, savedInstanceState)
         navigationVisibility = View.GONE
 
-        requireActivity().navigationBarAndStatusBarColor(R.color.white, R.color.white)
+        requireActivity().navigationBarAndStatusBarColor(R.color.white, R.color.white, lightFlag = true)
 
         motionLayoutHandler()
 

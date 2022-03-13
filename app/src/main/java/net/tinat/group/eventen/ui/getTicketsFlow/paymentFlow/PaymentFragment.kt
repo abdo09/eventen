@@ -11,7 +11,7 @@ import net.tinat.group.eventen.base.BaseViewModel
 import net.tinat.group.eventen.databinding.PaymentFragmentBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PaymentFragment : BaseSupportFragment() {
+class  PaymentFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<PaymentViewModel>()
 

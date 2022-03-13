@@ -1,30 +1,30 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.adapter.sponsor
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsList
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import net.tinat.group.eventen.data.dto.Event
-import net.tinat.group.eventen.databinding.FeaturedThisWeekItemBinding
-import net.tinat.group.eventen.databinding.SponsorImageItemBinding
+import net.tinat.group.eventen.data.dto.Sponsors
 import net.tinat.group.eventen.databinding.SponsorItemListBinding
 
 class SponsorAdapter: RecyclerView.Adapter<SponsorAdapter.SponsorViewHolder>() {
 
     inner class SponsorViewHolder(val sponsorItemListBinding: SponsorItemListBinding) :
         RecyclerView.ViewHolder(sponsorItemListBinding.root) {
-        fun bind(sponsors: Event.Sponsors) {
+        fun bind(sponsors: Sponsors) {
             sponsorItemListBinding.sponsor = sponsors
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Event.Sponsors>() {
-        override fun areItemsTheSame(oldItem: Event.Sponsors, newItem: Event.Sponsors): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Sponsors>() {
+        override fun areItemsTheSame(oldItem: Sponsors, newItem: Sponsors): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Event.Sponsors, newItem: Event.Sponsors): Boolean {
+        override fun areContentsTheSame(oldItem: Sponsors, newItem: Sponsors): Boolean {
             return oldItem == newItem
         }
     }
@@ -41,22 +41,24 @@ class SponsorAdapter: RecyclerView.Adapter<SponsorAdapter.SponsorViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Event.Sponsors) -> Unit)? = null
+    private var onItemClickListener: ((Sponsors) -> Unit)? = null
 
     override fun onBindViewHolder(holder: SponsorViewHolder, position: Int) {
         val event = differ.currentList[position]
         holder.bind(event)
 
         holder.sponsorItemListBinding.apply {
-            root.setOnClickListener {
+            imageSponsor.setOnClickListener {
                 onItemClickListener?.let {
                     it(event)
                 }
             }
+            if (differ.currentList.size - 1 == position)
+                this.bioAboutSeparator.visibility = View.INVISIBLE
         }
     }
 
-    fun setOnClickListener(listener: (Event.Sponsors) -> Unit) {
+    fun setOnClickListener(listener: (Sponsors) -> Unit) {
         onItemClickListener = listener
     }
 }

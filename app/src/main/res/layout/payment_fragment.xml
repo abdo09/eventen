@@ -255,18 +255,19 @@
             app:layout_constraintTop_toBottomOf="@id/ll_m_y_cvv"
             tools:ignore="UseCompoundDrawables">
 
-            <ImageView
+            <RadioButton
                 android:id="@+id/rb_save_card_information"
-                android:layout_width="18dp"
-                android:layout_height="match_parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:buttonTint="#410099"
                 android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_unchecked"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sixteen_dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/eight_dp"
                 android:text="@string/save_credit_card_information" />
 
         </LinearLayout>
@@ -345,21 +346,6 @@
                 android:background="@drawable/boarder_purple900_color"
                 android:elevation="@dimen/twenty_dp"
                 app:srcCompat="@drawable/ic_paypal"
-                tools:ignore="ContentDescription"
-                tools:targetApi="lollipop" />
-
-            <ImageButton
-                android:id="@+id/btn_apple_pay"
-                style="@style/Widget.AppCompat.ActionButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/sixty_dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/sixteen_dp"
-                android:layout_marginEnd="@dimen/sixteen_dp"
-                android:layout_weight="1"
-                android:background="@drawable/boarder_purple900_color"
-                android:elevation="@dimen/twenty_dp"
-                app:srcCompat="@drawable/ic_apple_pay"
                 tools:ignore="ContentDescription"
                 tools:targetApi="lollipop" />
 

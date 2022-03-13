@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.HomeMainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/evenTenNavHostFragment"
@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context=".ui.MainActivity">
+            tools:context=".ui.HomeMainActivity">
 
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/bottom_app_bar"
@@ -75,6 +75,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fab"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

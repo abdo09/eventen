@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.bottom_tabs.home.participantsList.ParticipantsListFragment">
+    tools:context=".ui.bottom_tabs.home.eventDetails.participantsList.ParticipantsListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,14 +61,15 @@
 
         </androidx.cardview.widget.CardView>
 
-        <net.tinat.group.eventen.base.BaseRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_participants_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingTop="@dimen/twenty_dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_container"
-            tools:listitem="@layout/participants_item_list" />
+            tools:listitem="@layout/sponsor_item_list" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

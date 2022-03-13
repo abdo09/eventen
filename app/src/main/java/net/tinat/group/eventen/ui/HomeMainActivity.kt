@@ -12,7 +12,9 @@ import net.tinat.group.eventen.base.BaseSupportActivity
 import net.tinat.group.eventen.databinding.ActivityMainBinding
 import net.tinat.group.eventen.utils.fadeIn
 import net.tinat.group.eventen.utils.fadeOut
-class MainActivity : BaseSupportActivity() {
+import net.tinat.group.eventen.utils.navigationBarAndStatusBarColor
+
+class HomeMainActivity : BaseSupportActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

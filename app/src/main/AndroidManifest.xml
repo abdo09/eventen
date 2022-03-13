@@ -21,8 +21,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eventen">
-        <activity android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+
+        <activity android:name=".ui.HomeMainActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true"
+            tools:node="merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

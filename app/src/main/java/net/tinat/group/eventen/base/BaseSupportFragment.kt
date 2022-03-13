@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import net.tinat.group.eventen.R
-import net.tinat.group.eventen.ui.MainActivity
+import net.tinat.group.eventen.ui.HomeMainActivity
 import net.tinat.group.eventen.ui.progress.ProgressDialog
 import net.tinat.group.eventen.utils.CookieBarConfig
 import net.tinat.group.eventen.utils.getCustomColor
@@ -49,7 +49,7 @@ abstract class BaseSupportFragment: Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity as MainActivity).apply {
+        (activity as HomeMainActivity).apply {
             activeLocalization()
         }
     }
@@ -57,37 +57,37 @@ abstract class BaseSupportFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        checkNetworkConnectivity(requireContext())
+        //checkNetworkConnectivity(requireContext())
 
-        viewModel.showLoading.observe(viewLifecycleOwner, { showLoading ->
+        viewModel.showLoading.observe(viewLifecycleOwner) { showLoading ->
             if (activity != null && !requireActivity().isFinishing) {
                 if (showLoading)
                     view.postDelayed({ progressDialog.show() }, 100)
                 else
                     view.postDelayed({ progressDialog.dismiss() }, 100)
             }
-        })
+        }
 
-        viewModel.showInfo.observe(viewLifecycleOwner, { infoMessage ->
+        viewModel.showInfo.observe(viewLifecycleOwner) { infoMessage ->
             if (infoMessage is String)
                 cookieBarConfig.showDefaultInfoCookie(infoMessage)
             else
                 context?.resources?.getString(infoMessage as Int)?.let {
                     cookieBarConfig.showDefaultInfoCookie(it)
                 }
-        })
+        }
 
 
-        viewModel.showSuccess.observe(viewLifecycleOwner, { infoMessage ->
+        viewModel.showSuccess.observe(viewLifecycleOwner) { infoMessage ->
             if (infoMessage is String)
                 cookieBarConfig.showDefaultSuccessCookie(infoMessage)
             else
                 context?.resources?.getString(infoMessage as Int)?.let {
                     cookieBarConfig.showDefaultSuccessCookie(it)
                 }
-        })
+        }
 
-        viewModel.showError.observe(viewLifecycleOwner, { showError ->
+        viewModel.showError.observe(viewLifecycleOwner) { showError ->
             cookieBarConfig.runCatching {
                 viewModel.showLoading.postValue(false)
                 if (showError is String) {
@@ -96,12 +96,27 @@ abstract class BaseSupportFragment: Fragment(){
                         val alert =
                             Snackbar.make(view, R.string.network_error, Snackbar.LENGTH_INDEFINITE)
                                 .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE)
-                                .setBackgroundTint(context?.getCustomColor(requireContext(), R.color.purple_900)!!)
-                                .setTextColor(context?.getCustomColor(requireContext(), R.color.white)!!)
+                                .setBackgroundTint(
+                                    context?.getCustomColor(
+                                        requireContext(),
+                                        R.color.purple_900
+                                    )!!
+                                )
+                                .setTextColor(
+                                    context?.getCustomColor(
+                                        requireContext(),
+                                        R.color.white
+                                    )!!
+                                )
                         alert.setAction(R.string.retry) {
                             alert.dismiss()
                             refreshUI()
-                        }.setActionTextColor(context?.getCustomColor(requireContext(),R.color.white)!!)
+                        }.setActionTextColor(
+                            context?.getCustomColor(
+                                requireContext(),
+                                R.color.white
+                            )!!
+                        )
                         alert.show()
                     } else {
                     }
@@ -111,7 +126,7 @@ abstract class BaseSupportFragment: Fragment(){
                     }
             }
 
-        })
+        }
 
         onLazyInitView(savedInstanceState)
     }
@@ -171,15 +186,15 @@ abstract class BaseSupportFragment: Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if (activity is MainActivity){
-            val  mainActivity = activity as MainActivity
+        if (activity is HomeMainActivity){
+            val  mainActivity = activity as HomeMainActivity
             mainActivity.setBottomNavigationVisibility(navigationVisibility)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).apply {
+        (activity as HomeMainActivity).apply {
             activeLocalization()
         }
     }

@@ -5,12 +5,18 @@
     android:layout_height="50dp"
     android:background="@color/purple_900">
 
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/twenty_dp"
+        android:layout_height="@dimen/twenty_dp"
+        android:src="@drawable/ic_back_cyan" />
+
     <TextView
+        android:paddingStart="@dimen/eight_dp"
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign up"
-        android:textColor="@color/white"
+        android:textColor="@color/cyan_200"
         android:textSize="20sp" />
 
 </androidx.appcompat.widget.Toolbar>

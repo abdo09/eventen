@@ -1,29 +1,30 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.adapter.participant
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import net.tinat.group.eventen.data.dto.Event
-import net.tinat.group.eventen.databinding.ParticipantImageItemBinding
+import net.tinat.group.eventen.data.dto.Participates
 import net.tinat.group.eventen.databinding.ParticipantItemListBinding
 
 class ParticipantAdapter: RecyclerView.Adapter<ParticipantAdapter.ParticipantViewHolder>() {
 
     inner class ParticipantViewHolder(val participantItemListBinding: ParticipantItemListBinding) :
         RecyclerView.ViewHolder(participantItemListBinding.root) {
-        fun bind(participate: Event.Participates) {
+        fun bind(participate: Participates) {
             participantItemListBinding.participant = participate
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Event.Participates>() {
-        override fun areItemsTheSame(oldItem: Event.Participates, newItem: Event.Participates): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Participates>() {
+        override fun areItemsTheSame(oldItem: Participates, newItem: Participates): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Event.Participates, newItem: Event.Participates): Boolean {
+        override fun areContentsTheSame(oldItem: Participates, newItem: Participates): Boolean {
             return oldItem == newItem
         }
     }
@@ -40,22 +41,24 @@ class ParticipantAdapter: RecyclerView.Adapter<ParticipantAdapter.ParticipantVie
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Event.Participates) -> Unit)? = null
+    private var onItemClickListener: ((Participates) -> Unit)? = null
 
     override fun onBindViewHolder(holder: ParticipantViewHolder, position: Int) {
         val participant = differ.currentList[position]
         holder.bind(participant)
 
         holder.participantItemListBinding.apply {
-            root.setOnClickListener {
+            imageParticipant.setOnClickListener {
                 onItemClickListener?.let {
                     it(participant)
                 }
             }
+            if (differ.currentList.size - 1 == position)
+                this.bioAboutSeparator.visibility = View.INVISIBLE
         }
     }
 
-    fun setOnClickListener(listener: (Event.Participates) -> Unit) {
+    fun setOnClickListener(listener: (Participates) -> Unit) {
         onItemClickListener = listener
     }
 }

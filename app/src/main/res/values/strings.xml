@@ -82,6 +82,7 @@
     <string name="vote">Vote</string>
     <string name="search_by_name">Search by name ...</string>
     <string name="oct_n22">Oct\n22</string>
+    <string name="press_back_again_to_exit">Press back again to exit</string>
 
     <array name="on_boarding_titles">
         <item>Search event</item>

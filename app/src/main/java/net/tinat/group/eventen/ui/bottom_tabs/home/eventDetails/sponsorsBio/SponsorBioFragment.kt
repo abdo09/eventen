@@ -1,29 +1,70 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.participantsBio
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsBio
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.navArgs
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
-import net.tinat.group.eventen.databinding.OnboardingViewpagerBinding
-import net.tinat.group.eventen.databinding.ParticipantBioFragmentBinding
+import net.tinat.group.eventen.databinding.SponsorBioFragmentBinding
+import net.tinat.group.eventen.utils.navigationBarAndStatusBarColor
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ParticipantBioFragment : BaseSupportFragment() {
+class SponsorBioFragment : BaseSupportFragment() {
 
-    override val viewModel by viewModel<ParticipantsBioViewModel>()
+    override val viewModel by viewModel<SponsorBioViewModel>()
 
-    private lateinit var binding: ParticipantBioFragmentBinding
+    private lateinit var binding: SponsorBioFragmentBinding
+    private val args by navArgs<SponsorBioFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ParticipantBioFragmentBinding.inflate(inflater, container, false)
+        binding = SponsorBioFragmentBinding.inflate(inflater, container, false)
+        requireActivity().navigationBarAndStatusBarColor(R.color.cyan_200, R.color.cyan_200, lightFlag = true)
+
+        binding.backButton.setOnClickListener {
+            //navController.navigate(EventDetailsFragmentDirections.actionEventDetailsFragmentToHomeFragment())
+        }
+
+        addCallBackToExit()
+
+        args.sponsor?.let {
+            binding.sponsor = it
+        }
+
+        onClickListener()
 
         return binding.root
+    }
+
+    private fun onClickListener() {
+        binding.btnReadMoreAboutEventBioFragment.setOnClickListener {
+            binding.viewModel = viewModel
+            viewModel.isExtended = !viewModel.isExtended
+        }
+    }
+
+    private fun addCallBackToExit() {
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callBack)
+    }
+
+
+    private val callBack: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        @SuppressLint("RestrictedApi")
+        override fun handleOnBackPressed() {
+            val previous = navController.previousBackStackEntry?.destination?.label.toString()
+            if (previous == "sponsors_list_fragment")
+                navController.navigate(SponsorBioFragmentDirections.actionSponsorBioFragmentToSponsorsListFragment(event = args.event))
+            else
+                navController.navigate(SponsorBioFragmentDirections.actionSponsorBioFragmentToEventDetailsFragment(event = args.event))
+        }
+
     }
 
 }

@@ -1,6 +1,7 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.participantsBio
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsBio
 
 import net.tinat.group.eventen.base.BaseViewModel
 
-class ParticipantsBioViewModel: BaseViewModel() {
+class SponsorBioViewModel: BaseViewModel() {
+    var isExtended = false
 }

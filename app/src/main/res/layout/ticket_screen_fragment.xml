@@ -31,7 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
-            android:layout_margin="30dp"
+            android:layout_marginTop="@dimen/sixteen_dp"
+            android:layout_marginBottom="@dimen/sixteen_dp"
+            android:layout_marginStart="@dimen/twentyFour_dp"
+            android:layout_marginEnd="@dimen/twentyFour_dp"
             app:cardCornerRadius="@dimen/sixteen_dp">
 
             <LinearLayout

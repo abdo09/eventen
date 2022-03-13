@@ -4,6 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.bottom_tabs.home.eventDetails.EventDetailsFragment">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="event"
+            type="net.tinat.group.eventen.data.dto.Event" />
+
+        <variable
+            name="viewModel"
+            type="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -57,7 +71,7 @@
                     android:id="@+id/cardView"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
                     android:layout_marginBottom="8dp"
                     android:backgroundTint="@color/purple_700"
                     app:cardCornerRadius="@dimen/twenty_dp"
@@ -68,6 +82,7 @@
                     tools:ignore="UnusedAttribute">
 
                     <TextView
+                        handledEventDate="@{event.date}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -83,10 +98,10 @@
                     android:id="@+id/cardView2"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginBottom="8dp"
                     android:backgroundTint="@color/cyan_200"
-                    app:cardCornerRadius="@dimen/twenty_dp"
+                    app:cardCornerRadius="@dimen/sixteen_dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_eventName_detailsFragment"
                     app:layout_constraintEnd_toStartOf="@+id/cardView"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -95,6 +110,7 @@
 
                     <TextView
                         android:id="@+id/popular_status"
+                        handledEventStatus="@{event.status}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -123,9 +139,9 @@
                     android:id="@+id/tv_eventName_detailsFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="32dp"
-                    android:text="BeSudan 2021"
+                    android:text="@{event.eventName}"
                     android:textSize="@dimen/twentyFour_sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -134,13 +150,15 @@
 
                 <TextView
                     android:id="@+id/tv_about_event_detailsFragment"
+                    eventDescriptionMaxLines="@{viewModel.extended}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="40dp"
-                    android:lineSpacingExtra="@dimen/ten_dp"
-                    android:maxLines="4"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="@dimen/four_dp"
+                    android:maxLines="3"
                     android:text="@string/about_event"
                     android:textSize="@dimen/twelve_sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -148,10 +166,12 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_eventName_detailsFragment" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="@dimen/twenty_dp"
-                    android:layout_height="@dimen/twenty_dp"
-                    android:layout_marginEnd="40dp"
+                    android:id="@+id/btn_extend_event_description"
+                    eventDescriptionImageRotation="@{viewModel.extended}"
+                    android:layout_width="@dimen/thirty_five_dp"
+                    android:layout_height="@dimen/thirty_five_dp"
+                    android:padding="@dimen/eight_dp"
+                    android:layout_marginEnd="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -163,16 +183,17 @@
                     android:id="@+id/location_and_date_layout_detailsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="@dimen/forty_dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3">
+                    app:layout_constraintTop_toBottomOf="@+id/btn_extend_event_description">
 
                     <TextView
+                        handledLocation="@{event.location}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/ten_dp"
@@ -181,6 +202,7 @@
                         android:textSize="@dimen/sixteen_sp" />
 
                     <TextView
+                        handledEventTime="@{event.time}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="04:00 PM - 11:30 PM"
@@ -215,7 +237,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:text="Samir yahia"
+                            android:text="@{event.organizer}"
                             android:textColor="@color/grayColor"
                             android:textSize="@dimen/ten_sp" />
 
@@ -237,7 +259,7 @@
                     android:id="@+id/tv_participants_fragmentDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="@dimen/sixteen_dp"
                     android:layout_marginBottom="@dimen/sixteen_dp"
                     android:text="@string/participants"
@@ -252,16 +274,27 @@
                     android:id="@+id/participants_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="@dimen/sixteen_dp"
-                    android:layout_marginEnd="@dimen/forty_dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_participants_fragmentDetails">
 
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_participants"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="45dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/sponsor_image_item" />
+
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/btn_more"
+                        android:id="@+id/btn_more_participants"
                         android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
@@ -274,24 +307,16 @@
                         tools:ignore="UnusedAttribute">
 
                         <TextView
-                            android:id="@+id/tv_more"
+                            android:id="@+id/tv_more_participants"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/ten_dp"
                             android:text="@string/more"
                             android:textColor="@color/purple_900"
-                            android:textSize="@dimen/sixteen_sp" />
+                            android:textSize="@dimen/fourteen_sp" />
 
                     </androidx.cardview.widget.CardView>
-
-                    <net.tinat.group.eventen.base.BaseRecyclerView
-                        android:id="@+id/rv_participants"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="45dp"
-                        tools:listitem="@layout/participant_item_event_details" />
 
                 </RelativeLayout>
 
@@ -299,7 +324,7 @@
                     android:id="@+id/tv_sponsors_fragmentDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="@dimen/sixteen_dp"
                     android:layout_marginBottom="@dimen/sixteen_dp"
                     android:text="@string/sponsors"
@@ -314,16 +339,16 @@
                     android:id="@+id/sponsors_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
                     android:layout_marginTop="@dimen/sixteen_dp"
-                    android:layout_marginEnd="@dimen/forty_dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_sponsors_fragmentDetails">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/sponsors_btn_more"
+                        android:id="@+id/btn_more_sponsors"
                         android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
@@ -336,24 +361,26 @@
                         tools:ignore="UnusedAttribute">
 
                         <TextView
-                            android:id="@+id/sponsors_tv_more"
+                            android:id="@+id/tv_more_sponsors"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/ten_dp"
                             android:text="@string/more"
                             android:textColor="@color/purple_900"
-                            android:textSize="@dimen/sixteen_sp" />
+                            android:textSize="@dimen/fourteen_sp" />
 
                     </androidx.cardview.widget.CardView>
 
-                    <net.tinat.group.eventen.base.BaseRecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_sponsors"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="45dp"
-                        tools:listitem="@layout/participant_item_event_details" />
+                        tools:listitem="@layout/sponsor_image_item" />
 
                 </RelativeLayout>
 

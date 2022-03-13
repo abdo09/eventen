@@ -3,60 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/eventDetailsFragment">
+    app:startDestination="@id/authGraph">
 
-    <fragment
-        android:id="@+id/splash"
-        android:name="net.tinat.group.eventen.ui.onBoarding.SplashFragment"
-        android:label="splash_fragment"
-        tools:layout="@layout/splash_fragment" >
-        <action
-            android:id="@+id/action_splash_to_onBoardingViewPager"
-            app:destination="@id/OnBoardingViewPager" />
+    <navigation
+        android:id="@+id/authGraph"
+        app:startDestination="@id/splash">
+        <fragment
+            android:id="@+id/signUpFragment"
+            android:name="net.tinat.group.eventen.ui.user.signup.SignUpFragment"
+            android:label="SignUpFragment"
+            tools:layout="@layout/sign_up_fragment">
+            <action
+                android:id="@+id/action_signUpFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+        </fragment>
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="net.tinat.group.eventen.ui.user.login.LoginFragment"
+            android:label="LoginFragment"
+            tools:layout="@layout/login_fragment">
+            <action
+                android:id="@+id/action_loginFragment_to_signUpFragment"
+                app:destination="@id/signUpFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_loginFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+        </fragment>
+        <fragment
+            android:id="@+id/OnBoardingViewPager"
+            android:name="net.tinat.group.eventen.ui.onBoarding.OnBoardingViewPager"
+            android:label="fragment_on_boarding_view_pager"
+            tools:layout="@layout/onboarding_viewpager_item">
+            <action
+                android:id="@+id/action_OnBoardingViewPager_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+        </fragment>
+        <fragment
+            android:id="@+id/splash"
+            android:name="net.tinat.group.eventen.ui.onBoarding.SplashFragment"
+            android:label="splash_fragment"
+            tools:layout="@layout/splash_fragment">
+            <action
+                android:id="@+id/action_splash_to_onBoardingViewPager"
+                app:destination="@id/OnBoardingViewPager" />
 
-        <action
-            android:id="@+id/action_splash_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+            <action
+                android:id="@+id/action_splash_to_homeFragment"
+                app:destination="@id/homeFragment" />
+        </fragment>
+    </navigation>
 
-    <fragment
-        android:id="@+id/OnBoardingViewPager"
-        android:name="net.tinat.group.eventen.ui.onBoarding.OnBoardingViewPager"
-        android:label="fragment_on_boarding_view_pager"
-        tools:layout="@layout/onboarding_viewpager_item" >
-        <action
-            android:id="@+id/action_OnBoardingViewPager_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="net.tinat.group.eventen.ui.user.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/login_fragment">
-        <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="net.tinat.group.eventen.ui.user.signup.SignUpFragment"
-        android:label="SignUpFragment"
-        tools:layout="@layout/sign_up_fragment">
-        <action
-            android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
-    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="net.tinat.group.eventen.ui.bottom_tabs.home.HomeFragment"
@@ -71,33 +75,19 @@
         <action
             android:id="@+id/action_homeFragment_to_activitiesFragment"
             app:destination="@id/activitiesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsGraph"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/ticketScreenFragment"
-        android:name="net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenFragment"
-        android:label="ticket_screen_fragment"
-        tools:layout="@layout/ticket_screen_fragment" />
-    <fragment
-        android:id="@+id/paymentFragment"
-        android:name="net.tinat.group.eventen.ui.getTicketsFlow.paymentFlow.PaymentFragment"
-        android:label="payment_fragment"
-        tools:layout="@layout/payment_fragment" />
-    <fragment
-        android:id="@+id/eventDetailsFragment"
-        android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsFragment"
-        android:label="event_details_fragment"
-        tools:layout="@layout/event_details_fragment" />
-    <fragment
-        android:id="@+id/getTicketFragment"
-        android:name="net.tinat.group.eventen.ui.getTicketsFlow.getTickets.GetTicketFragment"
-        android:label="GetTicketFragment"
-        tools:layout="@layout/get_ticket_fragment"/>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="net.tinat.group.eventen.ui.bottom_tabs.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" >
+        tools:layout="@layout/profile_fragment">
 
         <action
             android:id="@+id/action_profileFragment_to_activitiesFragment"
@@ -115,7 +105,7 @@
         android:id="@+id/activitiesFragment"
         android:name="net.tinat.group.eventen.ui.bottom_tabs.activity.ActivitiesFragment"
         android:label="activities_fragment"
-        tools:layout="@layout/activities_fragment" >
+        tools:layout="@layout/activities_fragment">
         <action
             android:id="@+id/action_activitiesFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -131,7 +121,7 @@
         android:id="@+id/ticketsFragment"
         android:name="net.tinat.group.eventen.ui.bottom_tabs.tickets.TicketsFragment"
         android:label="tickets_fragment"
-        tools:layout="@layout/tickets_fragment" >
+        tools:layout="@layout/tickets_fragment">
 
         <action
             android:id="@+id/action_tickets_Fragment_to_activitiesFragment"
@@ -144,5 +134,189 @@
             app:destination="@id/profileFragment" />
 
     </fragment>
+
+    <navigation
+        android:id="@+id/eventDetailsGraph"
+        app:startDestination="@id/eventDetailsFragment">
+        <fragment
+            android:id="@+id/participantBioFragment"
+            android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsBio.ParticipantBioFragment"
+            android:label="participant_bio_fragment"
+            tools:layout="@layout/participant_bio_fragment">
+            <argument
+                android:name="participant"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Participates"
+                app:nullable="true" />
+            <action
+                android:id="@+id/action_participantBioFragment_to_participantsListFragment"
+                app:destination="@id/participantsListFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <action
+                android:id="@+id/action_participantBioFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <argument
+                android:name="event"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/sponsorBioFragment"
+            android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsBio.SponsorBioFragment"
+            android:label="sponsor_bio_fragment"
+            tools:layout="@layout/sponsor_bio_fragment">
+            <argument
+                android:name="sponsor"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Sponsors"
+                app:nullable="true" />
+            <action
+                android:id="@+id/action_sponsorBioFragment_to_sponsorsListFragment"
+                app:destination="@id/sponsorsListFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <action
+                android:id="@+id/action_sponsorBioFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <argument
+                android:name="event"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/sponsorsListFragment"
+            android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsList.SponsorsListFragment"
+            android:label="sponsors_list_fragment"
+            tools:layout="@layout/sponsors_list_fragment">
+            <action
+                android:id="@+id/action_sponsorsListFragment_to_sponsorBioFragment"
+                app:destination="@id/sponsorBioFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <argument
+                android:name="event"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true" />
+            <action
+                android:id="@+id/action_sponsorsListFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+        </fragment>
+        <fragment
+            android:id="@+id/participantsListFragment"
+            android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.ParticipantsListFragment"
+            android:label="participants_list_fragment"
+            tools:layout="@layout/participants_list_fragment">
+            <action
+                android:id="@+id/action_participantsListFragment_to_participantBioFragment"
+                app:destination="@id/participantBioFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <argument
+                android:name="event"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true" />
+            <action
+                android:id="@+id/action_participantsListFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+        </fragment>
+        <fragment
+            android:id="@+id/eventDetailsFragment"
+            android:name="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsFragment"
+            android:label="event_details_fragment"
+            tools:layout="@layout/event_details_fragment">
+            <argument
+                android:name="event"
+                android:defaultValue="@null"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_participantBioFragment"
+                app:destination="@id/participantBioFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_sponsorBioFragment"
+                app:destination="@id/sponsorBioFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_participantsListFragment"
+                app:destination="@id/participantsListFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_sponsorsListFragment"
+                app:destination="@id/sponsorsListFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <action
+                android:id="@+id/action_eventDetailsFragment_to_getTicketFragment"
+                app:destination="@id/getTicketFragment" />
+        </fragment>
+        <action
+            android:id="@+id/action_global_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <argument
+            android:name="event"
+            android:defaultValue="@null"
+            app:argType="net.tinat.group.eventen.data.dto.Event"
+            app:nullable="true" />
+        <fragment
+            android:id="@+id/getTicketFragment"
+            android:name="net.tinat.group.eventen.ui.getTicketsFlow.getTickets.GetTicketFragment"
+            android:label="GetTicketFragment"
+            tools:layout="@layout/get_ticket_fragment" >
+            <action
+                android:id="@+id/action_getTicketFragment_to_paymentFragment"
+                app:destination="@id/paymentFragment" />
+            <action
+                android:id="@+id/action_getTicketFragment_to_eventDetailsFragment2"
+                app:destination="@id/eventDetailsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/ticketScreenFragment"
+            android:name="net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenFragment"
+            android:label="ticket_screen_fragment"
+            tools:layout="@layout/ticket_screen_fragment" >
+            <action
+                android:id="@+id/action_ticketScreenFragment_to_paymentFragment2"
+                app:destination="@id/paymentFragment" />
+            <action
+                android:id="@+id/action_ticketScreenFragment_to_homeFragment"
+                app:destination="@id/homeFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/paymentFragment"
+            android:name="net.tinat.group.eventen.ui.getTicketsFlow.paymentFlow.PaymentFragment"
+            android:label="payment_fragment"
+            tools:layout="@layout/payment_fragment" >
+            <action
+                android:id="@+id/action_paymentFragment_to_ticketScreenFragment2"
+                app:destination="@id/ticketScreenFragment" />
+            <action
+                android:id="@+id/action_paymentFragment_to_getTicketFragment"
+                app:destination="@id/getTicketFragment" />
+        </fragment>
+    </navigation>
 
 </navigation>

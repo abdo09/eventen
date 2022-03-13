@@ -5,6 +5,10 @@ import net.tinat.group.eventen.data.repository.CategoryRepository
 import net.tinat.group.eventen.ui.bottom_tabs.activity.ActivitiesViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.home.HomeFragmentViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsViewModel
+import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsBio.ParticipantsBioViewModel
+import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.ParticipantsListViewModel
+import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.SponsorsListViewModel
+import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsBio.SponsorBioViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.profile.ProfileViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.tickets.TicketsViewModel
 import net.tinat.group.eventen.ui.user.login.LoginFragmentViewModel
@@ -21,6 +25,10 @@ val appModules = module {
     viewModel { TicketsViewModel() }
     viewModel { ProfileViewModel() }
     viewModel { EventDetailsViewModel() }
+    viewModel { ParticipantsBioViewModel() }
+    viewModel { ParticipantsListViewModel() }
+    viewModel { SponsorBioViewModel() }
+    viewModel { SponsorsListViewModel() }
 
     factory { AuthRepository(get()) }
     factory { CategoryRepository(get(), get()) }

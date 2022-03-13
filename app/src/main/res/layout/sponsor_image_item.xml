@@ -6,8 +6,8 @@
 
         <import type="android.view.View"/>
         <variable
-            name="event"
-            type="net.tinat.group.eventen.data.dto.Event" />
+            name="sponsor"
+            type="net.tinat.group.eventen.data.dto.Sponsors" />
 
     </data>
 
@@ -18,7 +18,7 @@
         app:cardCornerRadius="@dimen/five_dp">
 
         <ImageView
-            android:id="@+id/sponsor_participant_image"
+            android:id="@+id/sponsor_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

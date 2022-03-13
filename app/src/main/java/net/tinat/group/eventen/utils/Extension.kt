@@ -22,6 +22,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -31,8 +32,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.sign_up_fragment.*
-import kotlinx.android.synthetic.main.sign_up_fragment.view.*
 import net.tinat.group.eventen.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -50,15 +49,16 @@ fun roundOffDecimal(number: Double): Double {
 
 fun Activity.navigationBarAndStatusBarColor(
     @ColorRes statusColor: Int,
-    @ColorRes navigationColor: Int
+    @ColorRes navigationColor: Int,
+    lightFlag: Boolean = false
 ) {
     val window: Window = this.window
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = ContextCompat.getColor(this, statusColor)
-        window.navigationBarColor = ContextCompat.getColor(this, navigationColor)
-    }
+    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window.statusBarColor = ContextCompat.getColor(this, statusColor)
+    window.navigationBarColor = ContextCompat.getColor(this, navigationColor)
+    val wic = WindowInsetsControllerCompat(window, window.decorView)
+    wic.isAppearanceLightStatusBars = lightFlag
+    wic.isAppearanceLightNavigationBars = lightFlag
 }
 
 private fun getSimpleDateFormat(): SimpleDateFormat {
@@ -74,7 +74,7 @@ fun String.formatDate(timeInMillis: String?): String? {
     val dateFormat = getSimpleDateFormat()
     var date = timeInMillis
     try {
-        date = formatDate(dateFormat.parse(timeInMillis ?: "").time, true)
+        date = formatDate(dateFormat.parse(timeInMillis ?: "").time)
     } catch (e: ParseException) {
         e.printStackTrace()
     }

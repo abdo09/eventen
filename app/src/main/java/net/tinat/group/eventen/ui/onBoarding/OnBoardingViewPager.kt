@@ -5,20 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-import kotlinx.android.synthetic.main.onboarding_viewpager_item.view.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportFragment
 import net.tinat.group.eventen.databinding.LoginFragmentBinding
 import net.tinat.group.eventen.databinding.OnboardingViewpagerBinding
+import net.tinat.group.eventen.databinding.OnboardingViewpagerItemBinding
 import net.tinat.group.eventen.ui.user.login.LoginFragmentViewModel
 import net.tinat.group.eventen.utils.*
 import org.koin.android.viewmodel.ext.android.viewModel
+
+lateinit var bindingOnBoardingStep: OnboardingViewpagerItemBinding
 
 class OnBoardingViewPager : BaseSupportFragment() {
 
@@ -72,14 +74,14 @@ class OnBoardingViewPager : BaseSupportFragment() {
 
     private fun setParallaxTransformation(page: View, position: Float) {
         page.apply {
-            val parallaxView = this.onboarding_image_view
+            val parallaxView = bindingOnBoardingStep.onboardingImageView
             when {
                 position < -1 -> // [-Infinity,-1)
                     // This page is way off-screen to the left.
                     alpha = 1f
                 position <= 1 -> { // [-1,1]
                     parallaxView.translationX = (-position * (width / 8)).toFloat() //Half the normal speed
-                    onboarding_header_text.translationX = (-position * (width / 4)).toFloat() //Half the normal speed
+                    bindingOnBoardingStep.onboardingHeaderText.translationX = (-position * (width / 4)).toFloat() //Half the normal speed
 
                     parallaxView.scaleX = (1 - Math.abs(position / 1.92)).toFloat()
                     parallaxView.scaleY = (1 - Math.abs(position / 1.92)).toFloat()
@@ -159,15 +161,15 @@ class OnBoardingViewPager : BaseSupportFragment() {
         }
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            val view = inflater.inflate(R.layout.onboarding_viewpager_item, container, false)
+            bindingOnBoardingStep = OnboardingViewpagerItemBinding.inflate(inflater, container, false)
 
             val index = requireArguments().getInt("i")
+            requireContext().loadWithGlide( into = bindingOnBoardingStep.onboardingImageView, url = ResourcesCompat.getDrawable(resources, onBoardingIllustrations[index], activity?.theme))
 
-            requireContext().loadWithGlide( into = view.findViewById(R.id.onboarding_image_view), url = ResourcesCompat.getDrawable(resources, onBoardingIllustrations[index], activity?.theme))
+            bindingOnBoardingStep.onboardingHeaderText.text =  onBoardingText[index]
 
-            view.findViewById<TextView>(R.id.onboarding_header_text).apply { text = onBoardingText[index] }
+            return bindingOnBoardingStep.root
 
-            return view
         }
     }
 }

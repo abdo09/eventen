@@ -2,5 +2,5 @@ package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsLis
 
 import net.tinat.group.eventen.base.BaseViewModel
 
-class ParticipantsListViewModel: BaseViewModel() {
+class SponsorsListViewModel: BaseViewModel() {
 }

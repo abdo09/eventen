@@ -4,32 +4,40 @@
 
 package net.tinat.group.eventen.ui.bottom_tabs.home.adapters.model
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
-import com.google.android.material.card.MaterialCardView
-import net.ferraSolution.food.R
-import net.ferraSolution.food.data.models.BestDealModel
-import net.ferraSolution.food.utils.loadWithGlide
+import net.tinat.group.eventen.R
+import net.tinat.group.eventen.data.dto.Event
+import net.tinat.group.eventen.utils.formatTime
+import net.tinat.group.eventen.utils.loadWithGlide
 
-@EpoxyModelClass(layout = R.layout.carousel_slider_image_model)
-abstract class SliderImageModel : EpoxyModelWithHolder<SliderImageModel.Holder>() {
-    @EpoxyAttribute
-    lateinit var image: BestDealModel
+@SuppressLint("NonConstantResourceId")
+@EpoxyModelClass(layout = R.layout.popular_event_item)
+abstract class SliderPopularEventModel : EpoxyModelWithHolder<SliderPopularEventModel.Holder>() {
+    @EpoxyAttribute(hash = false)
+    lateinit var popularEvent: Event
 
     @EpoxyAttribute(hash = false)
-    var onImageClickedItemListener: View.OnClickListener? = null
+    var onClickedItemListener: View.OnClickListener? = null
 
+    @SuppressLint("SetTextI18n")
     override fun bind(holder: Holder) {
-        image.let {
+        popularEvent.let {
 
-            holder.carItem.setOnClickListener(onImageClickedItemListener)
+            holder.eventItem.setOnClickListener(onClickedItemListener)
 
-            holder.carBrandImage.context.apply {
-                loadWithGlide(holder.carBrandImage, it.image)
+            holder.tvPopularDate.text = "${popularEvent.date?.dayOfTheWeek?.substring(0, 3)}\n${popularEvent.date?.dayOfTheMonth}"
+            holder.tvPopularStatus.text = popularEvent.status?.name?.replace("_", " ")
+
+            holder.popularEventImage.context.apply {
+                loadWithGlide(holder.popularEventImage, R.drawable.popular_event)
             }
 
         }
@@ -37,15 +45,19 @@ abstract class SliderImageModel : EpoxyModelWithHolder<SliderImageModel.Holder>(
 
     override fun unbind(holder: Holder) {
         super.unbind(holder)
-        holder.carItem.setOnClickListener(null)
+        holder.eventItem.setOnClickListener(null)
     }
 
     class Holder : EpoxyHolder() {
-        lateinit var carItem: MaterialCardView
-        lateinit var carBrandImage: ImageView
+        lateinit var eventItem: CardView
+        lateinit var popularEventImage: ImageView
+        lateinit var tvPopularStatus: TextView
+        lateinit var tvPopularDate: TextView
         override fun bindView(itemView: View) {
-            carItem = itemView.findViewById(R.id.car_item)
-            carBrandImage = itemView.findViewById(R.id.car_brand_img)
+            eventItem = itemView.findViewById(R.id.popular_event_card_view)
+            popularEventImage = itemView.findViewById(R.id.popular_event_image)
+            tvPopularDate = itemView.findViewById(R.id.tv_popular_date)
+            tvPopularStatus = itemView.findViewById(R.id.popular_status)
         }
     }
 }

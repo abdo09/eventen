@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.bottom_tabs.home.eventDetails.participantsList.SponsorsListFragment">
+    tools:context=".ui.bottom_tabs.home.eventDetails.sponsorsList.SponsorsListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_participants_list"
+            android:id="@+id/rv_sponsors_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingTop="@dimen/twenty_dp"

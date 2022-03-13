@@ -24,6 +24,9 @@
     <color name="grayColor">#636569</color>
     <color name="grayColor200">#E5E1E6</color>
 
+    <color name="lightBarColor">#410099</color>
+    <color name="darkBarColor">#2E1A46</color>
+
 
     <color name="transparent">#00FFFFFF</color>
 </resources>
