@@ -2,25 +2,16 @@ package net.tinat.group.eventen.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import net.tinat.group.eventen.R
 import net.tinat.group.eventen.base.BaseSupportActivity
 import net.tinat.group.eventen.databinding.ActivityMainBinding
 import net.tinat.group.eventen.utils.fadeIn
 import net.tinat.group.eventen.utils.fadeOut
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
-
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
-
-
 class MainActivity : BaseSupportActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -40,7 +31,7 @@ class MainActivity : BaseSupportActivity() {
     @SuppressLint("RestrictedApi")
     fun setBottomNavigationVisibility() {
         // get the reference of the bottomNavigationView and set the visibility.
-        when (NavHostFragment.findNavController(evenTenNavHostFragment).currentDestination?.id) {
+        when (navController.currentDestination?.id) {
             R.id.homeFragment -> {
                 binding.bottomAppBar.fadeIn(250, View.VISIBLE)
                 binding.fabLayout.fadeIn(250, View.VISIBLE)
@@ -95,15 +86,7 @@ class MainActivity : BaseSupportActivity() {
     @SuppressLint("ResourceType")
     private fun setUpNavigation() {
 
-        KeyboardVisibilityEvent.setEventListener(this) { isOpen ->
-            if (isOpen) {
-                binding.bottomAppBar.fadeIn(600, View.GONE)
-                binding.fabLayout.fadeIn(600, View.GONE)
-            } else {
-                binding.bottomAppBar.fadeIn(600, View.VISIBLE)
-                binding.fabLayout.fadeIn(600, View.VISIBLE)
-            }
-        }
+
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {

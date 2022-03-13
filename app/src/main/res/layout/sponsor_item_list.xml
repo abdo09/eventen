@@ -10,9 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/thirty_dp"
-        android:paddingEnd="@dimen/thirty_dp">
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:layout_gravity="center_vertical"
@@ -67,9 +65,9 @@
             android:layout_width="@dimen/twenty_dp"
             android:layout_height="@dimen/forty_dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:backgroundTint="@color/cyan_200"
-            app:cardCornerRadius="@dimen/sixteen_dp"
+            app:cardCornerRadius="@dimen/twelve_dp"
             tools:ignore="UnusedAttribute">
 
             <TextView
@@ -89,8 +87,8 @@
     <View
         android:id="@+id/bio_about_separator"
         android:layout_marginTop="@dimen/ten_dp"
-        android:layout_marginEnd="@dimen/thirty_dp"
-        android:layout_marginStart="@dimen/thirty_dp"
+        android:layout_marginEnd="@dimen/ten_dp"
+        android:layout_marginStart="@dimen/ten_dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/one_dp"
         android:background="@color/grayColor200"/>

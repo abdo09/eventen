@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.bottom_tabs.home.eventDetails.EventDetailsFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="event"
+            type="net.tinat.group.eventen.data.dto.Event" />
+
+        <variable
+            name="viewModel"
+            type="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/image_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        app:cardCornerRadius="@dimen/twenty_dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="UnusedAttribute">
+
+                        <ImageView
+                            android:id="@+id/home_popular_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/nineteen_dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/popular_event"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/purple_700"
+                    app:cardCornerRadius="@dimen/twenty_dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_eventName_detailsFragment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="UnusedAttribute">
+
+                    <TextView
+                        handledEventDate="@{event.date}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:gravity="center"
+                        android:text="Oct\n22"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sixteen_sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/cyan_200"
+                    app:cardCornerRadius="@dimen/sixteen_dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_eventName_detailsFragment"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="UnusedAttribute">
+
+                    <TextView
+                        android:id="@+id/popular_status"
+                        handledEventStatus="@{event.status}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:text="@string/active"
+                        android:textColor="@color/purple_900"
+                        android:textSize="@dimen/sixteen_sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/app_bar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <include
+                        android:id="@+id/toolbar_layout"
+                        layout="@layout/toolbar" />
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <TextView
+                    android:id="@+id/tv_eventName_detailsFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@{event.eventName}"
+                    android:textSize="@dimen/twentyFour_sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_card_view" />
+
+                <TextView
+                    android:id="@+id/tv_about_event_detailsFragment"
+                    eventDescriptionMaxLines="@{viewModel.extended}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="@dimen/four_dp"
+                    android:maxLines="3"
+                    android:text="@string/about_event"
+                    android:textSize="@dimen/twelve_sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_eventName_detailsFragment" />
+
+                <ImageView
+                    android:id="@+id/btn_extend_event_description"
+                    eventDescriptionImageRotation="@{viewModel.extended}"
+                    android:layout_width="@dimen/thirty_five_dp"
+                    android:layout_height="@dimen/thirty_five_dp"
+                    android:padding="@dimen/eight_dp"
+                    android:layout_marginEnd="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_about_event_detailsFragment"
+                    app:srcCompat="@drawable/ic_down_arrow"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:id="@+id/location_and_date_layout_detailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_extend_event_description">
+
+                    <TextView
+                        handledLocation="@{event.location}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/ten_dp"
+                        android:text="@string/khartoum_sudan"
+                        android:textColor="@color/purple_700"
+                        android:textSize="@dimen/sixteen_sp" />
+
+                    <TextView
+                        handledEventTime="@{event.time}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04:00 PM - 11:30 PM"
+                        android:textColor="@color/purple_700"
+                        android:textSize="@dimen/ten_sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/twenty_dp"
+                        android:text="beSudan.com"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/ten_sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ten_dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/ten_dp"
+                            android:text="Organizer:"
+                            android:textColor="@color/grayColor"
+                            android:textSize="@dimen/ten_sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:text="@{event.organizer}"
+                            android:textColor="@color/grayColor"
+                            android:textSize="@dimen/ten_sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/fragmentDetails_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/one_dp"
+                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:layout_marginEnd="@dimen/forty_dp"
+                    android:background="@color/grayColor200"
+                    app:layout_constraintTop_toBottomOf="@id/location_and_date_layout_detailsFragment" />
+
+                <TextView
+                    android:id="@+id/tv_participants_fragmentDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:layout_marginBottom="@dimen/sixteen_dp"
+                    android:text="@string/participants"
+                    android:textColor="@color/purple_900"
+                    android:textSize="@dimen/twentyFour_sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentDetails_separator" />
+
+                <RelativeLayout
+                    android:id="@+id/participants_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_participants_fragmentDetails">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_participants"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="45dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/sponsor_image_item" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_more_participants"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/five_dp"
+                        android:layout_marginEnd="@dimen/five_dp"
+                        android:layout_marginBottom="@dimen/five_dp"
+                        android:backgroundTint="@color/cyan_200"
+                        app:cardCornerRadius="@dimen/sixteen_dp"
+                        tools:ignore="UnusedAttribute">
+
+                        <TextView
+                            android:id="@+id/tv_more_participants"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/ten_dp"
+                            android:text="@string/more"
+                            android:textColor="@color/purple_900"
+                            android:textSize="@dimen/fourteen_sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_sponsors_fragmentDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:layout_marginBottom="@dimen/sixteen_dp"
+                    android:text="@string/sponsors"
+                    android:textColor="@color/purple_900"
+                    android:textSize="@dimen/twentyFour_sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/participants_layout" />
+
+                <RelativeLayout
+                    android:id="@+id/sponsors_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/thirty_dp"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:layout_marginEnd="@dimen/thirty_dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sponsors_fragmentDetails">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_more_sponsors"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/five_dp"
+                        android:layout_marginEnd="@dimen/five_dp"
+                        android:layout_marginBottom="@dimen/five_dp"
+                        android:backgroundTint="@color/cyan_200"
+                        app:cardCornerRadius="@dimen/sixteen_dp"
+                        tools:ignore="UnusedAttribute">
+
+                        <TextView
+                            android:id="@+id/tv_more_sponsors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/ten_dp"
+                            android:text="@string/more"
+                            android:textColor="@color/purple_900"
+                            android:textSize="@dimen/fourteen_sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_sponsors"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="45dp"
+                        tools:listitem="@layout/sponsor_image_item" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/btn_get_tickets"
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/forty_dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="@dimen/forty_dp"
+                    android:background="@drawable/boarder_purple_700_background"
+                    android:elevation="@dimen/ten_dp"
+                    android:gravity="center"
+                    android:padding="@dimen/sixteen_dp"
+                    android:text="@string/get_tickets"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sponsors_layout"
+                    tools:targetApi="lollipop" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/forty_dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_get_tickets" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

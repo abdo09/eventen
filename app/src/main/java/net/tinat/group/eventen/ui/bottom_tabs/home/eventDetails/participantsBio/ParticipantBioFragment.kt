@@ -1,4 +1,4 @@
-package net.tinat.group.eventen.ui.bottom_tabs.home.participantsList.participantsBio
+package net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList.participantsBio
 
 import android.os.Bundle
 import android.view.LayoutInflater
