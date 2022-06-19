@@ -6,7 +6,10 @@ import android.animation.*
 import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
@@ -337,4 +340,37 @@ private fun setTextInputLayoutHintColor(
             colorIdRes
         )
     )
+}
+
+val Int.dpToPx: Int
+    get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+fun drawable(backgroundColor: String, topLeftCorner: Int = 0, topRightCorner: Int = 0, bottomLeftCorner: Int = 0, bottomRightCorner: Int = 0): GradientDrawable {
+    val drawables = GradientDrawable()
+    val topLeft = topLeftCorner.dpToPx.toFloat()
+    val topRight = topRightCorner.dpToPx.toFloat()
+    val bottomLeft = bottomLeftCorner.dpToPx.toFloat()
+    val bottomRight = bottomRightCorner.dpToPx.toFloat()
+
+    drawables.setColor(
+        Color.parseColor(
+            backgroundColor
+        )
+    )
+
+    drawables.cornerRadii = floatArrayOf(
+        // top left
+        topLeft,
+        topLeft,
+        // top right
+        topRight,
+        topRight,
+        // bottom right
+        bottomRight,
+        bottomRight,
+        // bottom left
+        bottomLeft,
+        bottomLeft
+    )
+    return drawables
 }

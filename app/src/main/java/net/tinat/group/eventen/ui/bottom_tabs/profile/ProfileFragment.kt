@@ -17,7 +17,7 @@ class ProfileFragment : BaseSupportFragment() {
 
     override var navigationVisibility = View.VISIBLE
 
-    private lateinit var binding: ProfileFragmentBinding
+    private var binding: ProfileFragmentBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,15 @@ class ProfileFragment : BaseSupportFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = ProfileFragmentBinding.inflate(inflater, container, false)
 
-        return binding.root
+        return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

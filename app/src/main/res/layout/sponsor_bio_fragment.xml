@@ -84,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/twentyFour_dp"
-                            android:text="@string/first_last_name"
+                            android:text="@{sponsor.firstName + ' ' + sponsor.lastName}"
                             android:textColor="@color/purple_900"
                             android:textSize="@dimen/twenty_sp" />
 
@@ -93,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/twentyFour_dp"
-                            android:text="@string/job_description"
+                            android:text="@{sponsor.jobDescription}"
                             android:textColor="@color/purple_900"
                             android:textSize="@dimen/sixteen_sp" />
 
@@ -102,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/twentyFour_dp"
-                            android:text="@string/speaker"
+                            android:text="@{sponsor.title}"
                             android:textColor="@color/purple_900"
                             android:textSize="@dimen/sixteen_sp" />
 
@@ -136,8 +136,9 @@
                 android:paddingEnd="@dimen/eight_dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/purple_900"
                 android:text="Sponsor Bio"
-                android:textSize="20sp" />
+                android:textSize="@dimen/twenty_sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -176,6 +177,7 @@
             android:layout_height="@dimen/thirty_five_dp"
             android:padding="@dimen/eight_dp"
             android:layout_marginEnd="22dp"
+            eventDescriptionImageRotation="@{viewModel.extended}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

@@ -14,7 +14,6 @@ import net.tinat.group.eventen.R
 import net.tinat.group.eventen.data.dto.Event
 import kotlin.coroutines.CoroutineContext
 
-@FlowPreview
 @SuppressLint("NonConstantResourceId")
 @EpoxyModelClass(layout = R.layout.popular_event_model)
 abstract class SliderCarouselModel(private val sliderPosition: MutableLiveData<Int>) : EpoxyModelWithHolder<SliderCarouselModel.Holder>(), CoroutineScope {

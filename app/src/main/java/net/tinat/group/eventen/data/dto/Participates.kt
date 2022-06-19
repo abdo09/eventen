@@ -10,6 +10,5 @@ import kotlinx.parcelize.Parcelize
         val lastName: String = "",
         val image: String = "",
         val jobDescription: String = "",
-        val title: String = "",
-        val voted: Boolean = false
+        val title: String = ""
     ): Parcelable

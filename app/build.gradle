@@ -45,8 +45,8 @@ android {
 
         development {
 
-            /*resValue "string", "app_name", "B2B - test"
-            resValue "drawable", "logo", "ic_launcher_test"*/
+            resValue "string", "app_name", "Eventen-test"
+            resValue "drawable", "logo", "icon_test"
 
             dimension "version"
             versionNameSuffix "-dev"
@@ -55,10 +55,10 @@ android {
             /*getProps('./config/development.props').each { p ->
                 buildConfigField 'String', p.key, p.value
             }*/
-            /*manifestPlaceholders = [
-                    appIcon       : "@mipmap/ic_launcher_test",
-                    appIconRounded: "@mipmap/ic_launcher_test"
-            ]*/
+            manifestPlaceholders = [
+                    appIcon       : "@mipmap/icon_test",
+                    appIconRounded: "@mipmap/icon_test"
+            ]
         }
 
         production {
@@ -69,11 +69,10 @@ android {
                 buildConfigField 'String', p.key, p.value
             }*/
 
-            /*
             manifestPlaceholders = [
-                    appIcon       : "@mipmap/ic_launcher",
+                    appIcon       : "@mipmap/ic_launcher_foreground",
                     appIconRounded: "@mipmap/ic_launcher_round"
-            ]*/
+            ]
 
         }
     }
@@ -113,9 +112,11 @@ def getProps(path) {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-auth:20.0.2'
-    implementation 'com.google.firebase:firebase-firestore:22.0.2'
+    implementation 'com.google.firebase:firebase-auth:21.0.2'
+    implementation 'com.google.firebase:firebase-firestore:24.0.2'
+    implementation 'com.google.firebase:firebase-database:20.0.4'
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
     // Required -- JUnit 4 framework
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -177,7 +178,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     // Room
-    implementation "androidx.room:room-runtime:2.2.5"
+    implementation "androidx.room:room-runtime:2.4.2"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:2.2.5"
 
@@ -218,6 +219,7 @@ dependencies {
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-common:2.4.1'
 
 }
 

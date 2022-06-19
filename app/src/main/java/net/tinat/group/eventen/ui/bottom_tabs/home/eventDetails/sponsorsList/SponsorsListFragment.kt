@@ -22,8 +22,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SponsorsListFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<SponsorsListViewModel>()
-
-    private lateinit var binding: SponsorsListFragmentBinding
+    private var binding: SponsorsListFragmentBinding? = null
     private lateinit var sponsorListAdapter: SponsorAdapter
     private val args by navArgs<SponsorsListFragmentArgs>()
 
@@ -32,9 +31,9 @@ class SponsorsListFragment : BaseSupportFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = SponsorsListFragmentBinding.inflate(inflater, container, false)
-        binding.toolbarLayout.tvTitle.text = "Sponsors"
+        binding?.toolbarLayout?.tvTitle?.text = "Sponsors"
         requireActivity().navigationBarAndStatusBarColor(R.color.darkBarColor, R.color.darkBarColor)
 
         setupRecyclerView()
@@ -45,18 +44,18 @@ class SponsorsListFragment : BaseSupportFragment() {
             sponsorListAdapter.differ.submitList(it.sponsors)
         }
 
-        return binding.root
+        return binding?.root
     }
 
     private fun setupRecyclerView() {
         sponsorListAdapter = SponsorAdapter()
-        binding.rvSponsorsList.apply {
+        binding?.rvSponsorsList?.apply {
             adapter = sponsorListAdapter
         }
     }
 
     private fun onClickListener(){
-        binding.toolbarLayout.backButton.setOnClickListener {
+        binding?.toolbarLayout?.backButton?.setOnClickListener {
             navigateToEventDetails()
         }
         sponsorListAdapter.setOnClickListener {
@@ -78,6 +77,14 @@ class SponsorsListFragment : BaseSupportFragment() {
 
     private fun navigateToEventDetails() {
         navController.navigate(SponsorsListFragmentDirections.actionSponsorsListFragmentToEventDetailsFragment(args.event))
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding?.apply {
+            rvSponsorsList.adapter = null
+        }
+        binding = null
     }
 
 }

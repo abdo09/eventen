@@ -22,7 +22,7 @@ class EventDetailsFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<EventDetailsViewModel>()
 
-    private lateinit var binding: EventDetailsFragmentBinding
+    private var binding: EventDetailsFragmentBinding? = null
 
     private lateinit var sponsorImageAdapter: SponsorImageAdapter
     private lateinit var participantImageAdapter: ParticipantImageAdapter
@@ -33,7 +33,7 @@ class EventDetailsFragment : BaseSupportFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = EventDetailsFragmentBinding.inflate(inflater, container, false)
 
         setupRecyclerView()
@@ -41,7 +41,7 @@ class EventDetailsFragment : BaseSupportFragment() {
 
         args.event.apply {
             this?.let {
-                binding.event = it
+                binding?.event = it
                 participantImageAdapter.differ.submitList(it.participates)
                 sponsorImageAdapter.differ.submitList(it.sponsors)
             }
@@ -51,51 +51,81 @@ class EventDetailsFragment : BaseSupportFragment() {
 
         onClickLister()
 
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbarLayout.tvTitle.text = args.event?.eventName
+        binding?.toolbarLayout?.tvTitle?.text = args.event?.eventName
     }
 
     private fun onClickLister() {
-        binding.btnExtendEventDescription.setOnClickListener {
-            binding.viewModel = viewModel
-            viewModel.isExtended = !viewModel.isExtended
+        binding?.btnExtendEventDescription?.setOnClickListener {
+            binding?.viewModel = viewModel
+            viewModel.extend()
         }
+        binding?.apply {
 
-        binding.btnMoreParticipants.setOnClickListener {
-            navController.navigate(EventDetailsFragmentDirections.actionEventDetailsFragmentToParticipantsListFragment(args.event))
-        }
+            btnMoreParticipants.setOnClickListener {
+                navController.navigate(
+                    EventDetailsFragmentDirections.actionEventDetailsFragmentToParticipantsListFragment(
+                        args.event
+                    )
+                )
+            }
 
-        binding.btnMoreSponsors.setOnClickListener {
-            navController.navigate(EventDetailsFragmentDirections.actionEventDetailsFragmentToSponsorsListFragment(args.event))
-        }
+            btnMoreSponsors.setOnClickListener {
+                navController.navigate(
+                    EventDetailsFragmentDirections.actionEventDetailsFragmentToSponsorsListFragment(
+                        args.event
+                    )
+                )
+            }
 
-        binding.toolbarLayout.backButton.setOnClickListener {
-            navigateToHomeFragment()
-        }
+            toolbarLayout.backButton.setOnClickListener {
+                navigateToHomeFragment()
+            }
 
-        participantImageAdapter.setOnClickListener {
-            navController.navigate(EventDetailsFragmentDirections.actionEventDetailsFragmentToParticipantBioFragment(it, args.event))
-        }
+            participantImageAdapter.setOnClickListener {
+                navController.navigate(
+                    EventDetailsFragmentDirections.actionEventDetailsFragmentToParticipantBioFragment(
+                        it,
+                        args.event
+                    )
+                )
+            }
 
-        sponsorImageAdapter.setOnClickListener {
-            navController.navigate(EventDetailsFragmentDirections.actionEventDetailsFragmentToSponsorBioFragment(it, args.event))
+            sponsorImageAdapter.setOnClickListener {
+                navController.navigate(
+                    EventDetailsFragmentDirections.actionEventDetailsFragmentToSponsorBioFragment(
+                        it,
+                        args.event
+                    )
+                )
+            }
+
+            btnGetTickets.setOnClickListener {
+                navController.navigate(
+                    EventDetailsFragmentDirections.actionEventDetailsFragmentToGetTicketFragment(
+                        args.event
+                    )
+                )
+            }
         }
     }
 
     private fun setupRecyclerView() {
         participantImageAdapter = ParticipantImageAdapter()
         sponsorImageAdapter = SponsorImageAdapter()
-        binding.rvParticipants.apply {
-            adapter = participantImageAdapter
-        }
+        binding?.apply {
+            rvParticipants.apply {
+                adapter = participantImageAdapter
+            }
 
-        binding.rvSponsors.apply {
-            adapter = sponsorImageAdapter
+            rvSponsors.apply {
+                adapter = sponsorImageAdapter
+            }
         }
     }
 
@@ -113,6 +143,15 @@ class EventDetailsFragment : BaseSupportFragment() {
 
     private fun navigateToHomeFragment() {
         navController.navigate(EventDetailsFragmentDirections.actionGlobalHomeFragment())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding?.apply {
+            rvParticipants.adapter = null
+            rvSponsors.adapter = null
+        }
+        binding = null
     }
 
 }

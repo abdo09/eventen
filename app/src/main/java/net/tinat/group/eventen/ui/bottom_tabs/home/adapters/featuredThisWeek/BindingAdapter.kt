@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import net.tinat.group.eventen.data.dto.Event
 import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsViewModel
 import net.tinat.group.eventen.utils.formatTime
+import net.tinat.group.eventen.utils.getDoubleValue
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("handledLocation")
@@ -56,3 +57,16 @@ fun ImageView.eventDescriptionImageRotation(isExtended: Boolean?){
     }
 }
 
+@BindingAdapter("ticketPrice")
+fun TextView.ticketPrice(ticketsType: Event.TicketsType?){
+    ticketsType?.let {
+        when(it){
+            Event.TicketsType.VIP ->{
+                this.text = getDoubleValue(200.0)
+            }
+            Event.TicketsType.VISITOR ->{
+                this.text = getDoubleValue(50.0)
+            }
+        }
+    }
+}

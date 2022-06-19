@@ -17,19 +17,24 @@ class TicketsFragment : BaseSupportFragment() {
 
     override var navigationVisibility = View.VISIBLE
 
-    private lateinit var binding: TicketsFragmentBinding
+    private var binding: TicketsFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = TicketsFragmentBinding.inflate(inflater, container, false)
 
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

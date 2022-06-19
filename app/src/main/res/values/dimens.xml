@@ -29,4 +29,6 @@
     <dimen name="eight_dp">8dp</dimen>
     <dimen name="four_dp">4dp</dimen>
     <dimen name="two_dp">2dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="fifty_six_dp">56dp</dimen>
 </resources>

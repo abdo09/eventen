@@ -20,7 +20,7 @@ class ParticipantsListFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<ParticipantsListViewModel>()
 
-    private lateinit var binding: ParticipantsListFragmentBinding
+    private var binding: ParticipantsListFragmentBinding? = null
     private lateinit var participantAdapter: ParticipantAdapter
     private val args by navArgs<ParticipantsListFragmentArgs>()
 
@@ -29,9 +29,9 @@ class ParticipantsListFragment : BaseSupportFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = ParticipantsListFragmentBinding.inflate(inflater, container, false)
-        binding.toolbarLayout.tvTitle.text = "Participants"
+        binding?.toolbarLayout?.tvTitle?.text = "Participants"
         requireActivity().navigationBarAndStatusBarColor(R.color.darkBarColor, R.color.darkBarColor)
 
         setupRecyclerView()
@@ -42,18 +42,18 @@ class ParticipantsListFragment : BaseSupportFragment() {
             participantAdapter.differ.submitList(it.participates)
         }
 
-        return binding.root
+        return binding?.root
     }
 
     private fun setupRecyclerView() {
         participantAdapter = ParticipantAdapter()
-        binding.rvParticipantsList.apply {
+        binding?.rvParticipantsList?.apply {
             adapter = participantAdapter
         }
     }
 
     private fun onClickListener(){
-        binding.toolbarLayout.backButton.setOnClickListener {
+        binding?.toolbarLayout?.backButton?.setOnClickListener {
             navigateToEventDetails()
         }
         participantAdapter.setOnClickListener {
@@ -75,6 +75,14 @@ class ParticipantsListFragment : BaseSupportFragment() {
 
     private fun navigateToEventDetails() {
         navController.navigate(ParticipantsListFragmentDirections.actionParticipantsListFragmentToEventDetailsFragment(args.event))
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding?.apply {
+            rvParticipantsList.adapter = null
+        }
+        binding = null
     }
 
 }

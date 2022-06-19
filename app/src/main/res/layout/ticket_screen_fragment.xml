@@ -13,6 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="@dimen/eight_dp"
             android:background="@color/purple_900"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +23,18 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:textStyle="bold"
+                android:text="@string/ticket"
+                android:textColor="@color/cyan_200"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/close_fragment"
+                android:layout_width="@dimen/twentyFour_dp"
+                android:layout_height="@dimen/twentyFour_dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/twentyFour_dp"
+                android:src="@drawable/ic_close_cyan" />
 
         </androidx.appcompat.widget.Toolbar>
 

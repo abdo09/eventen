@@ -2,8 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.getTicketsFlow.getTickets.GetTicketFragment"
-    >
+    tools:context=".ui.getTicketsFlow.getTickets.GetTicketFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="event"
+            type="net.tinat.group.eventen.data.dto.Event" />
+
+        <variable
+            name="viewModel"
+            type="net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.EventDetailsViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                handledEventDate="@{event.date}"
                 android:layout_margin="@dimen/ten_dp"
                 android:gravity="center"
                 android:text="@string/oct_n22"
@@ -70,7 +84,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_active_now"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="8dp"
@@ -83,9 +97,10 @@
             tools:ignore="UnusedAttribute">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                handledEventStatus="@{event.status}"
                 android:layout_margin="@dimen/ten_dp"
                 android:text="@string/active"
                 android:textColor="@color/purple_900"
@@ -113,8 +128,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="32dp"
-            android:paddingTop="@dimen/twenty_dp"
-            android:text="@string/besudan_2021"
+            android:paddingTop="@dimen/ten_dp"
+            android:paddingBottom="@dimen/ten_dp"
+            android:text="@{event.eventName}"
             android:textColor="@color/purple_900"
             android:textSize="@dimen/twenty_sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -148,28 +164,25 @@
                     android:id="@+id/sp_tickets"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:background="@drawable/rounded_corners_app_blue"
                     android:entries="@array/tickets_type"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/five_dp"
-                    android:paddingEnd="@dimen/five_dp"
+                    android:textAlignment="center"
+                    android:paddingStart="@dimen/zero_dp"
+                    android:paddingEnd="@dimen/twentyFour_dp"
                     android:theme="@style/spinnerThemePurple"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-
+                    android:id="@+id/down_arrow"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_gravity="center"
                     android:layout_marginEnd="@dimen/sixteen_dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/sp_tickets"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sp_tickets"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_spinner_arrow"
                     tools:ignore="ContentDescription" />
 
@@ -203,6 +216,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_marginEnd="40dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/btn_quantity"
@@ -212,10 +226,12 @@
             app:layout_constraintTop_toTopOf="@+id/btn_quantity">
 
             <ImageView
-                android:layout_width="@dimen/twenty_dp"
-                android:layout_height="@dimen/twenty_dp"
+                android:id="@+id/btn_minus"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/five_dp"
+                android:padding="@dimen/four_dp"
                 app:srcCompat="@drawable/ic_minus_circle" />
 
             <LinearLayout
@@ -229,15 +245,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/_100_000" />
+                    android:text="@string/_1" />
 
             </LinearLayout>
 
             <ImageView
-                android:layout_width="@dimen/twenty_dp"
-                android:layout_height="@dimen/twenty_dp"
+                android:id="@+id/btn_plus"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/five_dp"
+                android:padding="@dimen/four_dp"
                 app:srcCompat="@drawable/ic_plus_circle" />
 
         </LinearLayout>
@@ -268,19 +286,17 @@
         <LinearLayout
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="65dp"
             android:background="@drawable/boarder_gray_color"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="@+id/btn_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btn_price"
-            app:layout_constraintTop_toTopOf="@+id/btn_price"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="@+id/btn_price">
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/_50" />

@@ -219,8 +219,8 @@
             <action
                 android:id="@+id/action_participantsListFragment_to_participantBioFragment"
                 app:destination="@id/participantBioFragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left" />
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
             <argument
                 android:name="event"
                 android:defaultValue="@null"
@@ -269,7 +269,9 @@
                 app:exitAnim="@anim/slide_out_left" />
             <action
                 android:id="@+id/action_eventDetailsFragment_to_getTicketFragment"
-                app:destination="@id/getTicketFragment" />
+                app:destination="@id/getTicketFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
         </fragment>
         <action
             android:id="@+id/action_global_homeFragment"
@@ -288,22 +290,19 @@
             tools:layout="@layout/get_ticket_fragment" >
             <action
                 android:id="@+id/action_getTicketFragment_to_paymentFragment"
-                app:destination="@id/paymentFragment" />
+                app:destination="@id/paymentFragment"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right" />
             <action
-                android:id="@+id/action_getTicketFragment_to_eventDetailsFragment2"
-                app:destination="@id/eventDetailsFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/ticketScreenFragment"
-            android:name="net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenFragment"
-            android:label="ticket_screen_fragment"
-            tools:layout="@layout/ticket_screen_fragment" >
-            <action
-                android:id="@+id/action_ticketScreenFragment_to_paymentFragment2"
-                app:destination="@id/paymentFragment" />
-            <action
-                android:id="@+id/action_ticketScreenFragment_to_homeFragment"
-                app:destination="@id/homeFragment" />
+                android:id="@+id/action_getTicketFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left" />
+            <argument
+                android:name="event"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true"
+                android:defaultValue="@null" />
         </fragment>
         <fragment
             android:id="@+id/paymentFragment"
@@ -311,12 +310,38 @@
             android:label="payment_fragment"
             tools:layout="@layout/payment_fragment" >
             <action
-                android:id="@+id/action_paymentFragment_to_ticketScreenFragment2"
-                app:destination="@id/ticketScreenFragment" />
+                android:id="@+id/action_paymentFragment_to_ticketScreenFragment"
+                app:destination="@id/ticketScreenFragment"
+                app:enterAnim="@anim/fly_in"
+                app:exitAnim="@anim/fly_out"/>
             <action
                 android:id="@+id/action_paymentFragment_to_getTicketFragment"
-                app:destination="@id/getTicketFragment" />
+                app:destination="@id/getTicketFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"/>
+            <argument
+                android:name="event"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true"
+                android:defaultValue="@null" />
         </fragment>
+        <fragment
+            android:id="@+id/ticketScreenFragment"
+            android:name="net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenFragment"
+            android:label="ticket_screen_fragment"
+            tools:layout="@layout/ticket_screen_fragment" >
+            <action
+                android:id="@+id/action_ticketScreenFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:enterAnim="@anim/fly_in"
+                app:exitAnim="@anim/fly_out" />
+            <argument
+                android:name="event"
+                app:argType="net.tinat.group.eventen.data.dto.Event"
+                app:nullable="true"
+                android:defaultValue="@null" />
+        </fragment>
+
     </navigation>
 
 </navigation>

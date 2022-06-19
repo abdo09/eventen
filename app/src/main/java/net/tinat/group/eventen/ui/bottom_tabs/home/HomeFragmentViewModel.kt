@@ -1,7 +1,6 @@
 package net.tinat.group.eventen.ui.bottom_tabs.home
 
-import android.annotation.SuppressLint
-import android.util.Log
+
 import androidx.lifecycle.MutableLiveData
 import net.tinat.group.eventen.base.BaseViewModel
 import net.tinat.group.eventen.data.dto.Event
@@ -21,7 +20,7 @@ class HomeFragmentViewModel(private val categoryRepository: CategoryRepository) 
             showLoading.value = false
             for (document in documents) {
                 listOfCategories.add(document.id)
-                //Log.d("GDSGFGASG", document.getString("nameEn").toString())
+                /*Log.d("GDSGFGASG", document.getString("nameEn").toString())*/
             }
             categoriesList?.value = listOfCategories
         }
@@ -249,6 +248,80 @@ class HomeFragmentViewModel(private val categoryRepository: CategoryRepository) 
             date = Event.Date(
                 dayOfTheMonth = 9,
                 dayOfTheWeek = "SUNDAY"
+            ),
+            participates = listOf(
+                Participates(
+                    id = "0",
+                    firstName = "Abdo",
+                    lastName = "Omer",
+                    title = "Speaker",
+                    jobDescription = "Graphic designer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Succuc",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Programmer"
+                ),
+                Participates(
+                    id = "2",
+                    firstName = "Timpo",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Photographer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Moe",
+                    lastName = "Alsafi",
+                    title = "Listener",
+                    jobDescription = "Programmer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Isam",
+                    lastName = "Alsafi",
+                    title = "Leader",
+                    jobDescription = "Brand specialist"
+                ),
+            ),
+            sponsors = listOf(
+                Sponsors(
+                    id = "4",
+                    firstName = "Isam",
+                    lastName = "Alsafi",
+                    title = "Leader",
+                    jobDescription = "Brand specialist"
+                ),
+                Sponsors(
+                    id = "3",
+                    firstName = "Moe",
+                    lastName = "Alsafi",
+                    title = "Listener",
+                    jobDescription = "Programmer"
+                ),
+                Sponsors(
+                    id = "2",
+                    firstName = "Timpo",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Photographer"
+                ),
+                Sponsors(
+                    id = "1",
+                    firstName = "Succuc",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Programmer"
+                ),
+                Sponsors(
+                    id = "0",
+                    firstName = "Abdo",
+                    lastName = "Omer",
+                    title = "Speaker",
+                    jobDescription = "Graphic designer"
+                )
             )
         ),
         Event(
@@ -271,6 +344,80 @@ class HomeFragmentViewModel(private val categoryRepository: CategoryRepository) 
             date = Event.Date(
                 dayOfTheMonth = 4,
                 dayOfTheWeek = "TUESDAY"
+            ),
+            participates = listOf(
+                Participates(
+                    id = "0",
+                    firstName = "Abdo",
+                    lastName = "Omer",
+                    title = "Speaker",
+                    jobDescription = "Graphic designer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Succuc",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Programmer"
+                ),
+                Participates(
+                    id = "2",
+                    firstName = "Timpo",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Photographer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Moe",
+                    lastName = "Alsafi",
+                    title = "Listener",
+                    jobDescription = "Programmer"
+                ),
+                Participates(
+                    id = "1",
+                    firstName = "Isam",
+                    lastName = "Alsafi",
+                    title = "Leader",
+                    jobDescription = "Brand specialist"
+                ),
+            ),
+            sponsors = listOf(
+                Sponsors(
+                    id = "4",
+                    firstName = "Isam",
+                    lastName = "Alsafi",
+                    title = "Leader",
+                    jobDescription = "Brand specialist"
+                ),
+                Sponsors(
+                    id = "3",
+                    firstName = "Moe",
+                    lastName = "Alsafi",
+                    title = "Listener",
+                    jobDescription = "Programmer"
+                ),
+                Sponsors(
+                    id = "2",
+                    firstName = "Timpo",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Photographer"
+                ),
+                Sponsors(
+                    id = "1",
+                    firstName = "Succuc",
+                    lastName = "Saif",
+                    title = "Visitor",
+                    jobDescription = "Programmer"
+                ),
+                Sponsors(
+                    id = "0",
+                    firstName = "Abdo",
+                    lastName = "Omer",
+                    title = "Speaker",
+                    jobDescription = "Graphic designer"
+                )
             )
         ),
         Event(

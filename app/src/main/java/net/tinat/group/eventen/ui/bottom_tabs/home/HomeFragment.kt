@@ -24,7 +24,7 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
 
     override var navigationVisibility = View.VISIBLE
 
-    private lateinit var binding: HomeFragmentBinding
+    private var binding: HomeFragmentBinding? = null
     private lateinit var eventAdapter: EventAdapter
 
     private val popularEventController: PopularEventController by lazy { PopularEventController(this) }
@@ -33,13 +33,13 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         addCallBackToExit()
 
         requireActivity().navigationBarAndStatusBarColor(R.color.purple_700, R.color.purple_700)
 
-        return binding.root
+        return binding?.root
     }
 
     @SuppressLint("SetTextI18n")
@@ -51,7 +51,7 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
         setupRecyclerView()
 
         val popularEvent = viewModel.events().filter { it.popular?: false }
-        binding.event = viewModel.events().filter { it.popular?: false }[0]
+        binding?.event = viewModel.events().filter { it.popular?: false }[0]
 
         popularEventController.popularEventList = popularEvent
         popularEventController.requestModelBuild()
@@ -65,7 +65,7 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
     }
 
     private fun initController() {
-        binding.rvPopularEventModel.setControllerAndBuildModels(controller = popularEventController)
+        binding?.rvPopularEventModel?.setControllerAndBuildModels(controller = popularEventController)
     }
 
     private fun initViewModel() {
@@ -74,16 +74,16 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
         }
 
         popularEventController.sliderPosition.observe(viewLifecycleOwner){ position ->
-            binding.eventNull = position?.equals(null)
+            binding?.eventNull = position?.equals(null)
             position?.let { pos ->
-                binding.event = viewModel.events().filter { it.popular?: false }[pos]
+                binding?.event = viewModel.events().filter { it.popular?: false }[pos]
             }
         }
     }
 
     private fun setupRecyclerView() {
         eventAdapter = EventAdapter()
-        binding.rvFeaturedThisWeek.apply {
+        binding?.rvFeaturedThisWeek?.apply {
             adapter = eventAdapter
         }
     }
@@ -112,6 +112,13 @@ class HomeFragment : BaseSupportFragment(), PopularEventController.AdapterCallba
                 lastCallback = System.currentTimeMillis()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding?.rvPopularEventModel?.adapter = null
+        binding?.rvFeaturedThisWeek?.adapter = null
+        binding = null
     }
 
 }

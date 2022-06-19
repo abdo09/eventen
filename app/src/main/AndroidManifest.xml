@@ -15,10 +15,11 @@
 
     <application
         android:name=".EventenApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_foreground"
+        android:allowBackup="false"
+        android:icon="${appIcon}"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:logo="${appIcon}"
+        android:roundIcon="${appIconRounded}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eventen">
 

@@ -19,7 +19,7 @@ class SplashFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<LoginFragmentViewModel>()
 
-    private lateinit var binding: SplashFragmentBinding
+    private var binding: SplashFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,7 @@ class SplashFragment : BaseSupportFragment() {
     ): View? {
         binding = SplashFragmentBinding.inflate(inflater, container, false)
 
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class SplashFragment : BaseSupportFragment() {
     }
 
     private fun motionLayoutHandler() {
-        binding.splashScreen.addTransitionListener(object : MotionLayout.TransitionListener{
+        binding?.splashScreen?.addTransitionListener(object : MotionLayout.TransitionListener{
             override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {}
 
             override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {}
@@ -60,6 +60,11 @@ class SplashFragment : BaseSupportFragment() {
             override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float) {}
 
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

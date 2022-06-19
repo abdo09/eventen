@@ -7,12 +7,14 @@
 
     <ImageView
         android:id="@+id/back_button"
-        android:layout_width="@dimen/twenty_dp"
-        android:layout_height="@dimen/twenty_dp"
+        android:layout_width="@dimen/thirty_dp"
+        android:layout_height="@dimen/thirty_dp"
+        android:padding="@dimen/five_dp"
         android:src="@drawable/ic_back_cyan" />
 
     <TextView
         android:paddingStart="@dimen/eight_dp"
+        android:paddingEnd="@dimen/zero_dp"
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

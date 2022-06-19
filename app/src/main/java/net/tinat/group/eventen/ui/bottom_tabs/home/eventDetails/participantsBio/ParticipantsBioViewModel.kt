@@ -4,4 +4,8 @@ import net.tinat.group.eventen.base.BaseViewModel
 
 class ParticipantsBioViewModel: BaseViewModel() {
     var isExtended = false
+
+    fun extend(){
+        isExtended = !isExtended
+    }
 }

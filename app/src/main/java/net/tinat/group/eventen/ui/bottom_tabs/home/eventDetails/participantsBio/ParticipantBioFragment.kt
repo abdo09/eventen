@@ -19,37 +19,44 @@ class ParticipantBioFragment : BaseSupportFragment() {
 
     override val viewModel by viewModel<ParticipantsBioViewModel>()
 
-    private lateinit var binding: ParticipantBioFragmentBinding
+    private var binding: ParticipantBioFragmentBinding? = null
     private val args by navArgs<ParticipantBioFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = ParticipantBioFragmentBinding.inflate(inflater, container, false)
 
-        requireActivity().navigationBarAndStatusBarColor(R.color.cyan_200, R.color.cyan_200, lightFlag = true)
+        requireActivity().navigationBarAndStatusBarColor(
+            R.color.cyan_200,
+            R.color.cyan_200,
+            lightFlag = true
+        )
 
         args.participant?.let {
-            binding.participant = it
+            binding?.participant = it
         }
 
         addCallBackToExit()
 
         onClickListener()
 
-        return binding.root
+        return binding?.root
     }
 
     private fun onClickListener() {
-        binding.btnReadMoreAboutEventBioFragment.setOnClickListener {
-            binding.viewModel = viewModel
-            viewModel.isExtended = !viewModel.isExtended
+
+        binding?.btnReadMoreAboutEventBioFragment?.setOnClickListener {
+            binding?.viewModel = viewModel
+            viewModel.extend()
         }
 
-        binding.backButton.setOnClickListener {
-            onBackPressed()
+        binding?.apply {
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 
@@ -66,12 +73,25 @@ class ParticipantBioFragment : BaseSupportFragment() {
 
     }
 
-    private fun onBackPressed(){
+    private fun onBackPressed() {
         val previous = navController.previousBackStackEntry?.destination?.label.toString()
         if (previous == "participants_list_fragment")
-            navController.navigate(ParticipantBioFragmentDirections.actionParticipantBioFragmentToParticipantsListFragment(event = args.event))
+            navController.navigate(
+                ParticipantBioFragmentDirections.actionParticipantBioFragmentToParticipantsListFragment(
+                    event = args.event
+                )
+            )
         else
-            navController.navigate(ParticipantBioFragmentDirections.actionParticipantBioFragmentToEventDetailsFragment(event = args.event))
+            navController.navigate(
+                ParticipantBioFragmentDirections.actionParticipantBioFragmentToEventDetailsFragment(
+                    event = args.event
+                )
+            )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

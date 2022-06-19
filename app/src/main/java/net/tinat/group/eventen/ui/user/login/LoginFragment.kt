@@ -20,16 +20,16 @@ class LoginFragment : BaseSupportFragment(){
 
     override var navigationVisibility = View.GONE
 
-    private lateinit var binding: LoginFragmentBinding
+    private var binding: LoginFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = LoginFragmentBinding.inflate(inflater, container, false)
 
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,12 +48,12 @@ class LoginFragment : BaseSupportFragment(){
     //Check fields are validated
     private fun isEntryValidated(): Boolean {
         return when {
-            binding.edLoginEmailNumber.text.toString().isEmpty() -> {
-                binding.ipLoginEmailNumber.setRedBoarder(R.string.email_number)
+            binding?.edLoginEmailNumber?.text.toString().isEmpty() -> {
+                binding?.ipLoginEmailNumber?.setRedBoarder(R.string.email_number)
                 false
             }
-            binding.edLoginPassword.text.toString().isEmpty() -> {
-                binding.ipLoginPassword.setRedBoarder(R.string.password)
+            binding?.edLoginPassword?.text.toString().isEmpty() -> {
+                binding?.ipLoginPassword?.setRedBoarder(R.string.password)
                 false
             }
             else -> true
@@ -62,8 +62,10 @@ class LoginFragment : BaseSupportFragment(){
 
     //Set default boarder
     private fun setGrayBoarderToField() {
-        binding.edLoginEmailNumber.setGrayBoarder(R.string.email_number, binding.ipLoginEmailNumber)
-        binding.edLoginPassword.setGrayBoarder(R.string.password, binding.ipLoginPassword)
+        binding?.apply {
+            edLoginEmailNumber.setGrayBoarder(R.string.email_number, ipLoginEmailNumber)
+            edLoginPassword.setGrayBoarder(R.string.password, ipLoginPassword)
+        }
     }
 
     //ViewModel observer
@@ -84,22 +86,31 @@ class LoginFragment : BaseSupportFragment(){
 
     //Clear all fields
     private fun clearAllFields() {
-        binding.edLoginEmailNumber.text = null
-        binding.edLoginPassword.text = null
+        binding?.apply {
+            edLoginEmailNumber.text = null
+            edLoginPassword.text = null
+        }
     }
 
     //Handle fragment clicks
     private fun onClick() {
-        binding.tvSignUp.setOnClickListener {
-            navController.navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
-        }
-
-        binding.btnLogin.setOnClickListener {
-            if (isEntryValidated()){
-                viewModel.signInUser(binding.edLoginEmailNumber.text.toString(), binding.edLoginPassword.text.toString())
+        binding?.apply {
+            tvSignUp.setOnClickListener {
+                navController.navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
             }
 
+            btnLogin.setOnClickListener {
+                if (isEntryValidated()){
+                    viewModel.signInUser(edLoginEmailNumber.text.toString(), edLoginPassword.text.toString())
+                }
+
+            }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

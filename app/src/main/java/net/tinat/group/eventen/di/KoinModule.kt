@@ -11,6 +11,9 @@ import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.participantsList
 import net.tinat.group.eventen.ui.bottom_tabs.home.eventDetails.sponsorsBio.SponsorBioViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.profile.ProfileViewModel
 import net.tinat.group.eventen.ui.bottom_tabs.tickets.TicketsViewModel
+import net.tinat.group.eventen.ui.getTicketsFlow.getTickets.GetTicketsViewModel
+import net.tinat.group.eventen.ui.getTicketsFlow.paymentFlow.PaymentViewModel
+import net.tinat.group.eventen.ui.getTicketsFlow.ticketScreen.TicketScreenViewModel
 import net.tinat.group.eventen.ui.user.login.LoginFragmentViewModel
 import net.tinat.group.eventen.ui.user.signup.SignUpFragmentViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -29,6 +32,9 @@ val appModules = module {
     viewModel { ParticipantsListViewModel() }
     viewModel { SponsorBioViewModel() }
     viewModel { SponsorsListViewModel() }
+    viewModel { GetTicketsViewModel() }
+    viewModel { PaymentViewModel() }
+    viewModel { TicketScreenViewModel() }
 
     factory { AuthRepository(get()) }
     factory { CategoryRepository(get(), get()) }

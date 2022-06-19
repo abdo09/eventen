@@ -29,7 +29,6 @@ public class ContextWrapper extends android.content.ContextWrapper {
         } else {
             configuration.setLocale(newLocale);
             context = context.createConfigurationContext(configuration);
-
         }
 
         return new ContextWrapper(context);
